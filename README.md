@@ -1,5 +1,5 @@
-# anais_Nom_projet
-Pipeline de l'étape de Nom_projet de la plateforme ANAIS ou en local
+# anais_inspection_controle
+Pipeline de l'étape de InspectionControlePA de la plateforme ANAIS ou en local
 
 # Installation & Lancement du projet DBT
 
@@ -41,8 +41,8 @@ Il doit se trouver dans le répertoire suivant :
 
 ### Où placer le fichier ?
 
-Il doit être placé dans à la racine du projet Nom_projet (au même niveau que le README et pyproject.toml) :
-- **VM Cegedim** : `~/Nom_projet/profiles.yml`
+Il doit être placé dans à la racine du projet inspection_controle (au même niveau que le README et pyproject.toml) :
+- **VM Cegedim** : `~/anais_inspection_controle/profiles.yml`
 - **Local** : `C:\Users\<VotreNom>\...\<projet>\profiles.yml`
  
 Le fichier `profiles.yml` est disponible à la racine du repo.  
@@ -69,12 +69,12 @@ Chaque projet à sa section.
 ### Section directory
 
 Contient les informations relatives aux fichiers et répertoires du projet.
-- local_directory_input = répertoire où sont trouvables les fichiers csv en entrée. Exemple: "input/Nom_projet"
-- local_directory_output = répertoire où sont enregistrés les fichiers csv en sortie. Exemple: "output/Nom_projet"
-- models_directory = répertoire dans lequel sont enregistrés les modèles dbt du projet. dbt_Nom_projet" trouvable dans '/anais_Nom_projet/dbt_Nom_projet/models/'
+- local_directory_input = répertoire où sont trouvables les fichiers csv en entrée. Exemple: "input/inspection_controle_pa"
+- local_directory_output = répertoire où sont enregistrés les fichiers csv en sortie. Exemple: "output/inspection_controle_pa"
+- models_directory = répertoire dans lequel sont enregistrés les modèles dbt du projet. dbtInspectionControlePA" trouvable dans '/anais_inspection_controle/dbtInspectionControlePA/models/'
 - create_table_directory = répertoire où sont enregistrés les fichiers SQL Create table. Exemple: 'output_sql/'
-- remote_directory_input = listes des répertoires sur le SFTP où sont enregistrés les fichiers csv en entrée (pour la recette). Exemple: "/SCN_BDD/Nom_projet/input"
-- remote_directory_output = listes des répertoires sur le SFTP où sont enregistrés les fichiers csv en sortie. Exemple: "/SCN_BDD/Nom_projet/output"
+- remote_directory_input = listes des répertoires sur le SFTP où sont enregistrés les fichiers csv en entrée (pour la recette). Exemple: "/SCN_BDD/INSPECTION_CONTROLE/PA/input"
+- remote_directory_output = listes des répertoires sur le SFTP où sont enregistrés les fichiers csv en sortie. Exemple: "/SCN_BDD/INSPECTION_CONTROLE/PA/output"
 
 
 ### Section **input_to_download**
@@ -100,19 +100,19 @@ Exemple: ods_insee: ods_insee
 L'ensemble de la Pipeline est exécuté depuis le `main.py`.
 
 ### Pour l'exécution de la pipeline:
-1. Placer vous dans le bon répertoire `anais_Nom_projet`
+1. Placer vous dans le bon répertoire `anais_inspection_controle`
 
 ```bash
-# Placer vous dans anais_Nom_projet
-cd anais_Nom_projet
+# Placer vous dans anais_inspection_controle
+cd anais_inspection_controle
 ```
 
 2. Lancer le `main.py`
 ```bash
-uv run main.py --env "local" --profile "Nom_projet"
+uv run main.py --env "local" --profile "InspectionControlePA"
 ```
 Avec env = 'local' ou 'anais' selon votre environnement de travail
-et profile = 'Nom_projet'
+et profile = 'InspectionControlePA'
 
 ### Pipeline sur env 'local':
 1. Récupération des fichiers d'input. !! Les fichiers doivent être placés manuellement dans le dossier `input/` sous format **.csv** !! (les délimiteurs sont gérés automatiquement)
