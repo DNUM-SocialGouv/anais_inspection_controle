@@ -334,20 +334,33 @@ InspectionControlePA:
   remote_directory_input: "/SCN_BDD/INSPECTION_CONTROLE/PA/input"
   remote_directory_output: "/SCN_BDD/INSPECTION_CONTROLE/PA/output"
   input_to_download:
-    staging__ref_geo: ref_geo
-    staging__ref_departements: ref_departements
-    staging__ref_regions: ref_regions
+    # staging__ref_geo: ref_geo
+    # staging__ref_departements: ref_departements
+    # staging__ref_regions: ref_regions
     staging__sa_siicea_cibles: sa_siicea_cibles
     staging__sa_siicea_decisions: sa_siicea_decisions
-    staging__tdb_ic_finess_500: tdb_ic_finess_500
-    staging__tdb_ic_siicea_cibles: tdb_ic_siicea_cibles
-    tdb_ic__siicea_missions_PA_prog: tbd_ic_siicea_missions_prog
-    tdb_ic__siicea_missions_PA_real: tbd_ic_siicea_missions_real
+    staging__sa_siicea_missions_prog: sa_siicea_missions_prog
+    staging__sa_siicea_missions_real: sa_siicea_missions_real
+    staging__sa_siicea_missions: sa_siicea_missions
+    staging__sa_t_finess: sa_t_finess
+    staging__v_comer: v_comer
+    staging__v_commune_comer: v_commune_comer
+    staging__v_commune_depuis: v_commune_depuis
+    staging__v_commune: v_commune
     staging__v_departement: v_departement
     staging__v_region: v_region
-    staging__v_commune: v_commune
+    # staging__sa_siicea_missions: sa_siicea_decisions_missions
+    # staging__tdb_ic_finess_500: tdb_ic_finess_500
+    # staging__tdb_ic_siicea_cibles: tdb_ic_siicea_cibles
+    # tdb_ic__siicea_missions_PA_prog: tdb_ic_siicea_missions_prog
+    # tdb_ic__siicea_missions_PA_real: tdb_ic_siicea_missions_real
+
+
+    
+    
+
   files_to_upload:
-    exemple_model: exemple_csv
+    inspection_controle__missions_agg_departement: inspection_controle__missions_agg_departement
 
 
 InspectionControlePH:
