@@ -11,7 +11,7 @@ WITH modalites AS (
         CASE 
             WHEN modalite_de_la_mission = 'Annoncée' THEN CAST(nb_mission AS FLOAT)
         END AS anoncee
-    FROM {{ ref('inspection_controle__missions') }}
+    FROM {{ ref('inspection_controle_PA__missions') }}
     WHERE CTRL_PL_PI = 'Sur site'
 )
 

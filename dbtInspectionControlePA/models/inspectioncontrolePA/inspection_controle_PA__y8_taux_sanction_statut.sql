@@ -5,7 +5,7 @@
 WITH sans_sanction_prive_non_lucratif AS (
 	SELECT
 		COUNT(DISTINCT identifiant_mission) AS sans_sanction_prive_non_lucratif
-	FROM {{ ref('inspection_controle__missions_sanction') }}
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
 	WHERE 
 		sanction = 'sans sanction'
 		AND statut_juridique_lb_corr = 'Organisme Privé à But non Lucratif'
@@ -13,14 +13,14 @@ WITH sans_sanction_prive_non_lucratif AS (
 , total_prive_non_lucratif AS (
 	SELECT
 		COUNT(DISTINCT identifiant_mission) AS total_prive_non_lucratif
-	FROM {{ ref('inspection_controle__missions_sanction') }}
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
 	WHERE 
 		statut_juridique_lb_corr = 'Organisme Privé à But non Lucratif'
 )
 , sans_sanction_prive_commercial AS (
 	SELECT
 		COUNT(DISTINCT identifiant_mission) AS sans_sanction_prive_commercial
-	FROM {{ ref('inspection_controle__missions_sanction') }}
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
 	WHERE 
 		sanction = 'sans sanction'
 		AND statut_juridique_lb_corr = 'Organisme Privé à Caractère Commercial'
@@ -28,14 +28,14 @@ WITH sans_sanction_prive_non_lucratif AS (
 , total_prive_commercial AS (
 	SELECT
 		COUNT(DISTINCT identifiant_mission) AS total_prive_commercial
-	FROM {{ ref('inspection_controle__missions_sanction') }}
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
 	WHERE 
 		statut_juridique_lb_corr = 'Organisme Privé à Caractère Commercial'
 )
 , sans_sanction_public AS (
 	SELECT
 		COUNT(DISTINCT identifiant_mission) AS sans_sanction_public
-	FROM {{ ref('inspection_controle__missions_sanction') }}
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
 	WHERE 
 		sanction = 'sans sanction'
 		AND statut_juridique_lb_corr = 'Organisme public'
@@ -43,7 +43,7 @@ WITH sans_sanction_prive_non_lucratif AS (
 , total_public AS (
 	SELECT
 		COUNT(DISTINCT identifiant_mission) AS total_public
-	FROM {{ ref('inspection_controle__missions_sanction') }}
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
 	WHERE 
 		statut_juridique_lb_corr = 'Organisme public'
 )

@@ -8,7 +8,7 @@ WITH Reference AS (
 		identifiant_mission,
 		statut_juridique_cd,
 		statut_juridique_lb_corr
-	FROM {{ ref('inspection_controle__suites') }}
+	FROM {{ ref('inspection_controle_PA__suites') }}
 )
 , Injonction AS (
     SELECT 
@@ -17,7 +17,7 @@ WITH Reference AS (
         statut_juridique_cd,
         statut_juridique_lb_corr,
         SUM(nb_suite) AS Injonction
-    FROM {{ ref('inspection_controle__suites') }}
+    FROM {{ ref('inspection_controle_PA__suites') }}
     WHERE 
     	type_de_decision IN ('Injonction')
     GROUP BY 
@@ -32,7 +32,7 @@ WITH Reference AS (
         statut_juridique_cd,
         statut_juridique_lb_corr,
         SUM(nb_suite) AS Prescription
-    FROM {{ ref('inspection_controle__suites') }}
+    FROM {{ ref('inspection_controle_PA__suites') }}
     WHERE 
     	type_de_decision IN ('Prescription')
     GROUP BY 
@@ -47,7 +47,7 @@ WITH Reference AS (
         statut_juridique_cd,
         statut_juridique_lb_corr,
         SUM(nb_suite) AS Coercitif
-    FROM {{ ref('inspection_controle__suites') }}
+    FROM {{ ref('inspection_controle_PA__suites') }}
     WHERE 
     	type_de_decision IN (
     		'Injonction',
@@ -64,7 +64,7 @@ WITH Reference AS (
         statut_juridique_cd,
         statut_juridique_lb_corr,
         SUM(nb_suite) AS Recommandation
-    FROM {{ ref('inspection_controle__suites') }}
+    FROM {{ ref('inspection_controle_PA__suites') }}
     WHERE 
     	type_de_decision IN ('Recommandation')
     GROUP BY 

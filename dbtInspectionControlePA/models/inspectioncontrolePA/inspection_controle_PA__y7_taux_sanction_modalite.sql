@@ -5,7 +5,7 @@
 WITH sans_sanction_sur_place AS (
 	SELECT
 		COUNT(DISTINCT identifiant_mission) AS sans_sanction_sur_place
-	FROM {{ ref('inspection_controle__missions_sanction') }}
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
 	WHERE 
 		SANCTION = 'sans sanction'
 		AND CTRL_PL_PI = 'Sur site'
@@ -13,14 +13,14 @@ WITH sans_sanction_sur_place AS (
 , total_sur_place AS (
 	SELECT
 		COUNT(DISTINCT identifiant_mission) AS total_sur_place
-	FROM {{ ref('inspection_controle__missions_sanction') }}
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
 	WHERE 
 		CTRL_PL_PI = 'Sur site'
 )
 , sans_sanction_sur_pieces AS (
 	SELECT
 		COUNT(DISTINCT identifiant_mission) AS sans_sanction_sur_pieces
-	FROM {{ ref('inspection_controle__missions_sanction') }}
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
 	WHERE 
 		SANCTION = 'sans sanction'
 		AND CTRL_PL_PI = 'Sur pièces'
@@ -28,7 +28,7 @@ WITH sans_sanction_sur_place AS (
 , total_sur_pieces AS (
 	SELECT
 		COUNT(DISTINCT identifiant_mission) AS total_sur_pieces
-	FROM {{ ref('inspection_controle__missions_sanction') }}
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
 	WHERE 
 		CTRL_PL_PI = 'Sur pièces'
 )

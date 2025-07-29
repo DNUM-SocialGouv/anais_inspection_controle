@@ -7,7 +7,7 @@ WITH detail AS (
 		COALESCE(statut_juridique_lb_corr, '') AS statut_juridique_lb_corr2,
 		type_de_decision,
 		COUNT(DISTINCT identifiant_mission ) AS "Nombre de missions d'I-C distinctes avec au moins une décision ou aucune"
-	FROM {{ ref('inspection_controle__suites') }}
+	FROM {{ ref('inspection_controle_PA__suites') }}
 	GROUP BY  
 		COALESCE(statut_juridique_lb_corr, ''),
 		type_de_decision
@@ -16,7 +16,7 @@ WITH detail AS (
 	SELECT 
 		COALESCE(statut_juridique_lb_corr, '') AS statut_juridique_lb_corr2 ,
 		COUNT(DISTINCT identifiant_mission ) AS "Total de missions d'I-C distinctes"
-	FROM {{ ref('inspection_controle__suites') }}
+	FROM {{ ref('inspection_controle_PA__suites') }}
 	GROUP BY
 		COALESCE(statut_juridique_lb_corr, '')
 	--WHERE 

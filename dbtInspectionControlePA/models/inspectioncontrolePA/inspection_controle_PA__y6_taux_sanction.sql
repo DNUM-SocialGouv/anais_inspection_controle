@@ -5,19 +5,19 @@
 WITH sans_sanction AS (
 	SELECT
 		COUNT(DISTINCT identifiant_mission) AS sans_sanction
-	FROM {{ ref('inspection_controle__missions_sanction') }}
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
 	WHERE 
 		sanction = 'sans sanction'
 )
 , total AS (
 	SELECT
 		COUNT(DISTINCT identifiant_mission) AS total
-	FROM {{ ref('inspection_controle__missions_sanction') }}
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
 )
 , avec_sanction AS (
 	SELECT
 		COUNT(DISTINCT identifiant_mission) AS avec_sanction
-	FROM {{ ref('inspection_controle__missions_sanction') }}
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
 	WHERE 
 		sanction = 'avec sanction'
 )

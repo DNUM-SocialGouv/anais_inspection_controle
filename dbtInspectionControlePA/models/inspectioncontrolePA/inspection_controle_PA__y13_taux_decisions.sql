@@ -7,7 +7,7 @@ WITH total AS (
         COALESCE(missions_sanction.reg_cd, '') AS reg_cd,
         missions_sanction.reg_lb,
         COUNT( DISTINCT missions_sanction.identifiant_mission ) AS total
-    FROM {{ ref('inspection_controle__missions_sanction') }} missions_sanction
+    FROM {{ ref('inspection_controle_PA__missions_sanction') }} missions_sanction
     GROUP BY 
         missions_sanction.reg_cd,
         missions_sanction.reg_lb
@@ -17,7 +17,7 @@ WITH total AS (
         COALESCE(missions_sanction.reg_cd, '') AS reg_cd,
         missions_sanction.reg_lb,
         COUNT(DISTINCT missions_sanction.identifiant_mission ) AS avec
-    FROM {{ ref('inspection_controle__missions_sanction') }} missions_sanction
+    FROM {{ ref('inspection_controle_PA__missions_sanction') }} missions_sanction
     WHERE missions_sanction.SANCTION = 'avec sanction'
     GROUP BY 
         missions_sanction.reg_cd,
@@ -28,7 +28,7 @@ WITH total AS (
         COALESCE(missions_sanction.reg_cd, '') AS reg_cd,
         missions_sanction.reg_lb,
         COUNT( DISTINCT missions_sanction.identifiant_mission ) AS sans
-    FROM {{ ref('inspection_controle__missions_sanction') }} missions_sanction
+    FROM {{ ref('inspection_controle_PA__missions_sanction') }} missions_sanction
     WHERE missions_sanction.SANCTION = 'sans sanction'
     GROUP BY 
         missions_sanction.reg_cd,

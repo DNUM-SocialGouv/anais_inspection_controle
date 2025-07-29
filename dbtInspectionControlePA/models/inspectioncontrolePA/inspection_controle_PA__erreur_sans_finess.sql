@@ -4,5 +4,5 @@
 
 SELECT
 *
-FROM {{ ref('inspection_controle__missions') }}
-WHERE code_finess = ''
+FROM {{ ref('inspection_controle_PA__missions') }}
+WHERE finess_cd = ''

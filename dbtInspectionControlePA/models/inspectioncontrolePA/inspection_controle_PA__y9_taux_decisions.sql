@@ -6,14 +6,14 @@ WITH detail AS (
 	SELECT 
 		type_de_decision ,
 		COUNT(DISTINCT identifiant_mission ) AS "Nombre de missions d'I-C distinctes avec au moins une décision ou aucune"
-	FROM {{ ref('inspection_controle__suites') }}
+	FROM {{ ref('inspection_controle_PA__suites') }}
 	GROUP BY  
 		type_de_decision
 )
 , total AS (
 	SELECT 
 		COUNT(DISTINCT identifiant_mission ) AS "Total de missions d'I-C distinctes"
-	FROM {{ ref('inspection_controle__suites') }}
+	FROM {{ ref('inspection_controle_PA__suites') }}
 	--WHERE 
 		--type_de_decision IS NOT NULL
 )

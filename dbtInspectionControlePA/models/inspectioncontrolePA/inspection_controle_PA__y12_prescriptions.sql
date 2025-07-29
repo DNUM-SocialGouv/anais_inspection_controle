@@ -8,7 +8,7 @@ WITH detail AS (
         theme_decision ,
         sous_theme_decision ,
         SUM(nb_suite) AS 'Prescriptions'
-    FROM {{ ref('inspection_controle__suites') }}
+    FROM {{ ref('inspection_controle_PA__suites') }}
     --WHERE filtre = 'Hors santé-environnement' 
     WHERE type_de_decision = 'Prescription'
     GROUP BY
@@ -18,7 +18,7 @@ WITH detail AS (
 , total AS (
     SELECT
         SUM(nb_suite) AS 'Total Prescriptions'
-        FROM {{ ref('inspection_controle__suites') }}
+        FROM {{ ref('inspection_controle_PA__suites') }}
     --WHERE filtre = 'Hors santé-environnement' 
     WHERE type_de_decision = 'Prescription'
 )

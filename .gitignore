@@ -6,7 +6,7 @@
 *.cpython-312.pyc
 *__pycache__
 /Staging/dbtStaging/target/
-/dbtInspectionControle/target/
+/dbtInspectionControlePA/target/
 /data/
 /Staging/dbtInspectionControlePA/
 /Staging/**/logs/
