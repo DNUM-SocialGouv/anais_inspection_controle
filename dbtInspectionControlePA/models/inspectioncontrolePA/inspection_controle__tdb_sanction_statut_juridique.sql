@@ -16,7 +16,7 @@ missions_clo_ss_s as (
         coalesce(reg_lb, '') || coalesce(statut_juridique_lb, '') as id_ref,
         reg_lb,
         statut_juridique_lb,
-        count(distinct identifiant_mission) as nb_missions_cloturees_sans_s
+        count(distinct identifiant_de_la_mission) as nb_missions_cloturees_sans_s
     from {{ ref('inspection_controle__missions_sanction') }}
     where sanction = 'sans sanction'
     group by reg_lb, statut_juridique_lb

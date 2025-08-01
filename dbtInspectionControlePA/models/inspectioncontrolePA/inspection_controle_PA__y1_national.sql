@@ -26,47 +26,47 @@ WITH compte_ehpad AS (
 , compte_ehpad_controles AS (
 	SELECT 
 		CASE
-			WHEN m.cd_finess = '' THEN rr.reg
+			WHEN m.finess_geographique = '' THEN rr.reg
 			WHEN rg.reg_cd IS NULL THEN 'NC'
 			ELSE rg.reg_cd
 		END || 
 		CASE
-			WHEN m.cd_finess = '' THEN {{ iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}
+			WHEN m.finess_geographique = '' THEN {{ iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}
 			WHEN rg.dep_lb IS NULL THEN 'NC'
 			ELSE rg.dep_cd
 		END || 
 		{{ iif_replacement("t_finess.com_code IS NULL", "'NC'", "t_finess.com_code") }}
 		as id_ref,
 		CASE
-			WHEN m.cd_finess = '' THEN rr.reg
+			WHEN m.finess_geographique = '' THEN rr.reg
 			WHEN rg.reg_cd IS NULL THEN 'NC'
 			ELSE rg.reg_cd
 		END
 		as reg_cd,
 		CASE
-			WHEN m.cd_finess = '' THEN rr.libelle
+			WHEN m.finess_geographique = '' THEN rr.libelle
 			WHEN rg.reg_lb IS NULL THEN 'NC'
 			ELSE rg.reg_lb
 		END
 		as reg_lb,
 		CASE
-			WHEN m.cd_finess = '' THEN {{ iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}
+			WHEN m.finess_geographique = '' THEN {{ iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}
 			WHEN rg.dep_lb IS NULL THEN 'NC'
 			ELSE rg.dep_cd
 		END
 		as dep_cd,
 		CASE
-			WHEN m.cd_finess = '' THEN rd.libelle
+			WHEN m.finess_geographique = '' THEN rd.libelle
 			WHEN rg.dep_lb IS NULL THEN 'NC'
 			ELSE rg.dep_lb
 		END
 		as dep_lb,
 		{{ iif_replacement("t_finess.com_code IS NULL", "'NC'", "t_finess.com_code") }} as com_cd,
 		{{ iif_replacement("rg.com_cd  IS NULL", "'NC'", "rg.com_lb") }} as com_lb,
-		cd_finess
+		finess_geographique
 	--FROM ODS_IC
 	FROM {{ ref('staging__sa_siicea_missions_real') }} m  
-	LEFT JOIN {{ ref('staging__tdb_ic_finess_500') }} t_finess ON m.cd_finess = t_finess.finess
+	LEFT JOIN {{ ref('staging__tdb_ic_finess_500') }} t_finess ON m.finess_geographique = t_finess.finess
 	LEFT JOIN {{ ref('staging__ref_geo') }} rg ON t_finess.com_code = rg.com_cd 
 	LEFT JOIN {{ ref('staging__ref_departements') }} rd ON ({{ iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}) = rd.dep 
 	LEFT JOIN {{ ref('staging__ref_regions') }} rr ON rd.reg = rr.reg
@@ -75,47 +75,47 @@ WITH compte_ehpad AS (
 , compte_missions AS (
 	SELECT 
 		CASE
-			WHEN m.cd_finess = '' THEN rr.reg
+			WHEN m.finess_geographique = '' THEN rr.reg
 			WHEN rg.reg_cd IS NULL THEN 'NC'
 			ELSE rg.reg_cd
 		END || 
 		CASE
-			WHEN m.cd_finess = '' THEN {{ iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}
+			WHEN m.finess_geographique = '' THEN {{ iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}
 			WHEN rg.dep_lb IS NULL THEN 'NC'
 			ELSE rg.dep_cd
 		END || 
 		{{ iif_replacement("t_finess.com_code IS NULL", "'NC'", "t_finess.com_code") }}
 		as id_ref,
 		CASE
-			WHEN m.cd_finess = '' THEN rr.reg
+			WHEN m.finess_geographique = '' THEN rr.reg
 			WHEN rg.reg_cd IS NULL THEN 'NC'
 			ELSE rg.reg_cd
 		END
 		as reg_cd,
 		CASE
-			WHEN m.cd_finess = '' THEN rr.libelle
+			WHEN m.finess_geographique = '' THEN rr.libelle
 			WHEN rg.reg_lb IS NULL THEN 'NC'
 			ELSE rg.reg_lb
 		END
 		as reg_lb,
 		CASE
-			WHEN m.cd_finess = '' THEN {{ iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}
+			WHEN m.finess_geographique = '' THEN {{ iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}
 			WHEN rg.dep_lb IS NULL THEN 'NC'
 			ELSE rg.dep_cd
 		END
 		as dep_cd,
 		CASE
-			WHEN m.cd_finess = '' THEN rd.libelle
+			WHEN m.finess_geographique = '' THEN rd.libelle
 			WHEN rg.dep_lb IS NULL THEN 'NC'
 			ELSE rg.dep_lb
 		END
 		as dep_lb,
 		{{ iif_replacement("t_finess.com_code IS NULL", "'NC'", "t_finess.com_code") }} as com_cd,
 		{{ iif_replacement("rg.com_cd  IS NULL", "'NC'", "rg.com_lb") }} as com_lb,
-	identifiant_mission
+	identifiant_de_la_mission
 	--FROM ODS_IC
 	FROM {{ ref('staging__sa_siicea_missions_real') }} m
-	LEFT JOIN {{ ref('staging__tdb_ic_finess_500') }} t_finess ON m.cd_finess = t_finess.finess
+	LEFT JOIN {{ ref('staging__tdb_ic_finess_500') }} t_finess ON m.finess_geographique = t_finess.finess
 	LEFT JOIN {{ ref('staging__ref_geo') }} rg ON t_finess.com_code = rg.com_cd 
 	LEFT JOIN {{ ref('staging__ref_departements') }} rd ON ({{ iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}) = rd.dep 
 	LEFT JOIN {{ ref('staging__ref_regions') }} rr ON rd.reg = rr.reg
@@ -163,10 +163,10 @@ WITH compte_ehpad AS (
 		reference.com_cd,
 		reference.com_lb,
 		COUNT(DISTINCT finess) AS nb_ehpad,
-		COUNT(DISTINCT identifiant_mission) AS nb_mission,
-		COUNT(DISTINCT cd_finess) AS nb_etab_controle,
-		(CAST(COUNT(DISTINCT cd_finess) AS FLOAT)/CAST(COUNT(DISTINCT finess) AS FLOAT))*100 AS nb_etab_controle_nb_ehpad
-	FROM reference
+		COUNT(DISTINCT identifiant_de_la_mission) AS nb_mission,
+		COUNT(DISTINCT finess_geographique) AS nb_etab_controle,
+		(CAST(COUNT(DISTINCT finess_geographique) AS FLOAT)/NULLIF(CAST(COUNT(DISTINCT finess) AS FLOAT), 0))*100 AS nb_etab_controle_nb_ehpad
+	FROM reference 
 	LEFT JOIN compte_ehpad ON reference.id_ref = compte_ehpad.id_ref
 	LEFT JOIN compte_ehpad_controles ON reference.id_ref = compte_ehpad_controles.id_ref
 	LEFT JOIN compte_missions ON reference.id_ref = compte_missions.id_ref
@@ -189,7 +189,7 @@ WITH compte_ehpad AS (
 		SUM(nb_ehpad) AS nb_ehpad,
 		SUM(nb_mission) AS nb_mission,
 		SUM(nb_etab_controle) AS nb_etab_controle,
-		(CAST(SUM(nb_etab_controle) AS FLOAT)/CAST(SUM(nb_ehpad) AS FLOAT))*100 AS nb_etab_controle_nb_ehpad
+		(CAST(SUM(nb_etab_controle) AS FLOAT)/NULLIF(CAST(SUM(nb_ehpad) AS FLOAT), 0))*100 AS nb_etab_controle_nb_ehpad
 	FROM communes
 	GROUP BY 
 		reg_cd,
@@ -205,7 +205,7 @@ WITH compte_ehpad AS (
 		SUM(nb_ehpad) AS nb_ehpad,
 		SUM(nb_mission) AS nb_mission,
 		SUM(nb_etab_controle) AS nb_etab_controle,
-		(CAST(SUM(nb_etab_controle) AS FLOAT)/CAST(SUM(nb_ehpad) AS FLOAT))*100 AS nb_etab_controle_nb_ehpad
+		(CAST(SUM(nb_etab_controle) AS FLOAT)/NULLIF(CAST(SUM(nb_ehpad) AS FLOAT), 0))*100 AS nb_etab_controle_nb_ehpad
 	FROM communes
 	GROUP BY 
 		reg_cd,
@@ -216,7 +216,7 @@ WITH compte_ehpad AS (
 		SUM(nb_ehpad) AS nb_ehpad,
 		SUM(nb_mission) AS nb_mission,
 		SUM(nb_etab_controle) AS nb_etab_controle,
-		(CAST(SUM(nb_etab_controle) AS FLOAT)/CAST(SUM(nb_ehpad) AS FLOAT))*100 AS "Taux d'EHPAD différents inspectés au moins une fois"
+		(CAST(SUM(nb_etab_controle) AS FLOAT)/NULLIF(CAST(SUM(nb_ehpad) AS FLOAT), 0))*100 AS "Taux d'EHPAD différents inspectés au moins une fois"
 	FROM communes
 )
 

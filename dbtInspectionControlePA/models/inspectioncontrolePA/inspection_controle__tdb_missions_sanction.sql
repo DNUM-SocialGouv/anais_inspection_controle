@@ -19,7 +19,7 @@ missions_real as (
 missions_clot as (
     select
         reg_lb,
-        count(distinct identifiant_mission) as nb_missions_cloturees
+        count(distinct identifiant_de_la_mission) as nb_missions_cloturees
     from {{ ref('inspection_controle__missions_sanction') }}
     group by reg_lb
 ),
@@ -27,7 +27,7 @@ missions_clot as (
 missions_clo_ss_s as (
     select
         reg_lb,
-        count(distinct identifiant_mission) as nb_missions_cloturees_sans_s
+        count(distinct identifiant_de_la_mission) as nb_missions_cloturees_sans_s
     from {{ ref('inspection_controle__missions_sanction') }}
     where sanction = 'sans sanction'
     group by reg_lb
@@ -36,7 +36,7 @@ missions_clo_ss_s as (
 saisines_parq as (
     select
         reg_lb,
-        count(distinct identifiant_mission) as nb_saisines_parquet
+        count(distinct identifiant_de_la_mission) as nb_saisines_parquet
     from {{ ref('inspection_controle__suites') }}
     where complement = 'Saisine parquet'
     group by reg_lb

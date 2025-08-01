@@ -36,9 +36,9 @@ compte_ehpad_controles as (
         coalesce(d.libelle, 'NC') as dep_lb,
         coalesce(f.com_code, 'NC') as com_cd,
         coalesce(c.nom_commune, 'NC') as com_lb,
-        m.cd_finess
+        m.finess_geographique as finess
     from {{ ref('staging__sa_siicea_missions_real') }} m
-    left join {{ ref('staging__tdb_ic_finess_500') }} f on m.cd_finess = f.finess
+    left join {{ ref('staging__tdb_ic_finess_500') }} f on m.finess_geographique = f.finess
     left join lien_communes c on f.com_code = c.code_commune
     left join {{ ref('staging__ref_departements') }} d on c.code_departement = d.dep
     left join {{ ref('staging__ref_regions') }} r on c.code_region = r.reg
@@ -53,9 +53,9 @@ compte_missions as (
         coalesce(d.libelle, 'NC') as dep_lb,
         coalesce(f.com_code, 'NC') as com_cd,
         coalesce(c.nom_commune, 'NC') as com_lb,
-        m.identifiant_mission
+        m.identifiant_de_la_mission
     from {{ ref('staging__sa_siicea_missions_real') }} m
-    left join {{ ref('staging__tdb_ic_finess_500') }} f on m.cd_finess = f.finess
+    left join {{ ref('staging__tdb_ic_finess_500') }} f on m.finess_geographique = f.finess
     left join lien_communes c on f.com_code = c.code_commune
     left join {{ ref('staging__ref_departements') }} d on c.code_departement = d.dep
     left join {{ ref('staging__ref_regions') }} r on c.code_region = r.reg
@@ -79,9 +79,9 @@ communes as (
         r.com_cd,
         r.com_lb,
         count(distinct e.finess) as nb_ehpad,
-        count(distinct m.identifiant_mission) as nb_mission,
-        count(distinct c.cd_finess) as nb_etab_controle,
-        (cast(count(distinct c.cd_finess) as float) / nullif(cast(count(distinct e.finess) as float), 0)) * 100 as nb_etab_controle_nb_ehpad
+        count(distinct m.identifiant_de_la_mission) as nb_mission,
+        count(distinct c.finess) as nb_etab_controle,
+        (cast(count(distinct c.finess) as float) / nullif(cast(count(distinct e.finess) as float), 0)) * 100 as nb_etab_controle_nb_ehpad
     from reference r
     left join compte_ehpad e on r.id_ref = e.id_ref
     left join compte_ehpad_controles c on r.id_ref = c.id_ref

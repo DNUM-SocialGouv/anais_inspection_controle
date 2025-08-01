@@ -22,7 +22,7 @@ missions_real_complet as (
         m.*
     from {{ ref('staging__helios_siicea_missions') }} m
     left join {{ ref('staging__sa_t_finess') }} f
-        on m.code_finess = f.et_finess
+        on m.cd_finess = f.et_finess
     left join lien_communes c
         on f.com_code = c.code_commune
     left join {{ ref('staging__ref_departements') }} d

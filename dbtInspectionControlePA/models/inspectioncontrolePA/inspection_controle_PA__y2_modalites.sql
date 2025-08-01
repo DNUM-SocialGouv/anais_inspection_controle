@@ -16,8 +16,8 @@ WITH modalites AS (
 )
 
 SELECT 
-    ROUND((SUM(inopinee) / NULLIF(SUM(inopinee) + SUM(anoncee), 0)) * 100, 2) 
+    ROUND((CAST(SUM(inopinee) AS numeric) / NULLIF(CAST(SUM(inopinee) AS numeric) + CAST(SUM(anoncee) AS numeric), 0)) * 100, 2) 
     AS "Taux d'inspections sur place réalisées de manière inopinée",
-    ROUND((SUM(anoncee) / NULLIF(SUM(inopinee) + SUM(anoncee), 0)) * 100, 2) 
+    ROUND((CAST(SUM(anoncee) AS numeric) / NULLIF(CAST(SUM(inopinee) AS numeric) + CAST(SUM(anoncee) AS numeric), 0)) * 100, 2) 
     AS "Taux d'inspections sur place réalisées de manière annoncée au gestionnaire"
 FROM modalites

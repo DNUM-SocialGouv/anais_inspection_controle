@@ -5,20 +5,46 @@ InspectionControlePA:
   create_table_directory: "output_sql/inspection_controle_pa/"
   remote_directory_input: "/SCN_BDD/INSPECTION_CONTROLE/PA/input"
   remote_directory_output: "/SCN_BDD/INSPECTION_CONTROLE/PA/output"
+  files_to_download:
+  files_to_download:
+    - path: "/SCN_BDD/SIICEA"
+      keyword: "GROUPECIBLES_SCN"
+      file: "sa_siicea_cibles.csv"
+    - path: "/SCN_BDD/SIICEA"
+      keyword: "DECISIONS_SCN"
+      file: "sa_siicea_decisions.csv"
+    - path: "/SCN_BDD/T_FINESS"
+      keyword: "t-finess"
+      file: "sa_t_finess.csv"
+    - path: "/SCN_BDD/INSEE"
+      keyword: "v_comer"
+      file: "v_comer.csv"
+    - path: "/SCN_BDD/INSEE"
+      keyword: "v_commune_comer"
+      file: "v_commune_comer.csv"
+    - path: "/SCN_BDD/INSEE"
+      keyword: "v_commune_depuis"
+      file: "v_commune_depuis.csv"
+    - path: "/SCN_BDD/INSEE"
+      keyword: "v_commune_2024"
+      file: "v_commune.csv"
+    - path: "/SCN_BDD/INSEE"
+      keyword: "v_departement"
+      file: "v_departement.csv"
+    - path: "/SCN_BDD/INSEE"
+      keyword: "v_region"
+      file: "v_region.csv"
+    - path: "/SCN_BDD/SIICEA/"
+      keyword: "MISSIONSPREV"
+      file: "sa_siicea_missions_prog.csv"
+    - path: "/SCN_BDD/SIICEA/"
+      keyword: "MISSIONSREAL"
+      file: "sa_siicea_missions_real.csv"
   input_to_download:
-    # staging__ref_geo: ref_geo
-    # staging__ref_departements: ref_departements
-    # staging__ref_regions: ref_regions
-    # staging__sa_siicea_missions: sa_siicea_decisions_missions
-    # staging__tdb_ic_finess_500: tdb_ic_finess_500
-    # staging__tdb_ic_siicea_cibles: tdb_ic_siicea_cibles
-    # tdb_ic__siicea_missions_PA_prog: tdb_ic_siicea_missions_prog
-    # tdb_ic__siicea_missions_PA_real: tdb_ic_siicea_missions_real
     staging__sa_siicea_cibles: sa_siicea_cibles
     staging__sa_siicea_decisions: sa_siicea_decisions
     staging__sa_siicea_missions_prog: sa_siicea_missions_prog
     staging__sa_siicea_missions_real: sa_siicea_missions_real
-    staging__sa_siicea_missions: sa_siicea_missions
     staging__sa_t_finess: sa_t_finess
     staging__v_comer: v_comer
     staging__v_commune_comer: v_commune_comer

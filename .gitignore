@@ -5,8 +5,16 @@
 *.cpython-39.pyc
 *.cpython-312.pyc
 *__pycache__
-/Staging/dbtStaging/target/
-/dbtInspectionControlePA/target/
+
+/Staging/** */
 /data/
-/Staging/dbtInspectionControlePA/
-/Staging/**/logs/
+**/dbt_packages/
+**/target/
+uv.lock
+.user.yml
+logs/**
+input/**
+output/**
+**/package-lock.yml
+.user.yml
+uv.lock
