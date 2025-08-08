@@ -12,7 +12,7 @@
 **/target/
 uv.lock
 .user.yml
-logs/**
+logs/
 input/**
 output/**
 **/package-lock.yml
