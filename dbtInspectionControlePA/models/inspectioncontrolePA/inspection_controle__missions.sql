@@ -29,6 +29,7 @@ missions_real_complet as (
         on c.code_departement = d.dep
     left join {{ ref('staging__ref_regions') }} r
         on c.code_region = r.reg
+    where m.cd_finess != '' and f.et_finess != '' --Rajouter pour éviter d'une jointure avec des NA (démultipliant le nombre de lignes jusqu'à 5 millions)
 )
 
 select * from missions_real_complet

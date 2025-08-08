@@ -6,7 +6,6 @@ InspectionControlePA:
   remote_directory_input: "/SCN_BDD/INSPECTION_CONTROLE/PA/input"
   remote_directory_output: "/SCN_BDD/INSPECTION_CONTROLE/PA/output"
   files_to_download:
-  files_to_download:
     - path: "/SCN_BDD/SIICEA"
       keyword: "GROUPECIBLES_SCN"
       file: "sa_siicea_cibles.csv"
@@ -41,29 +40,18 @@ InspectionControlePA:
       keyword: "MISSIONSREAL"
       file: "sa_siicea_missions_real.csv"
   input_to_download:
-    staging__sa_siicea_cibles: sa_siicea_cibles
-    staging__sa_siicea_decisions: sa_siicea_decisions
-    staging__sa_siicea_missions_prog: sa_siicea_missions_prog
-    staging__sa_siicea_missions_real: sa_siicea_missions_real
-    staging__sa_t_finess: sa_t_finess
-    staging__v_comer: v_comer
-    staging__v_commune_comer: v_commune_comer
-    staging__v_commune_depuis: v_commune_depuis
-    staging__v_commune: v_commune
-    staging__v_departement: v_departement
-    staging__v_region: v_region
+    sa_siicea_cibles: sa_siicea_cibles
+    sa_siicea_decisions: sa_siicea_decisions
+    sa_siicea_missions_prog: sa_siicea_missions_prog
+    sa_siicea_missions_real: sa_siicea_missions_real
+    sa_t_finess: sa_t_finess
+    v_comer: v_comer
+    v_commune_comer: v_commune_comer
+    v_commune_depuis: v_commune_depuis
+    v_commune: v_commune
+    v_departement: v_departement
+    v_region: v_region
   files_to_upload:
-    inspection_controle__missions_agg_departement: missions_agg_departement
-    inspection_controle__missions_agg_region: missions_agg_region
-    inspection_controle__missions_prog: missions_prog
-    inspection_controle__missions_sanction: missions_sanction
-    inspection_controle__missions: missions
-    inspection_controle__suites: suites
-    inspection_controle__tdb_injonction_prescriptions: tdb_injonction_prescriptions
-    inspection_controle__tdb_injonction: tdb_injonction
-    inspection_controle__tdb_missions_sanction: tdb_missions_sanction
-    inspection_controle__tdb_prescription: tdb_prescription
-    inspection_controle__tdb_sanction_statut_juridique: tdb_sanction_statut_juridique
     inspection_controle_PA__erreur_sans_finess: PA_erreur_sans_finess
     inspection_controle_PA__erreurs_finess: PA_erreurs_finess
     inspection_controle_PA__missions_agg_commune: PA_missions_agg_commune
@@ -83,3 +71,42 @@ InspectionControlePA:
     inspection_controle_PA__y11_injonctions: PA_y11_injonctions
     inspection_controle_PA__y12_prescriptions: PA_y12_prescriptions
     inspection_controle_PA__y13_taux_decisions: PA_y13_taux_decisions
+    inspection_controle__missions_agg_departement: missions_agg_departement
+    inspection_controle__missions_agg_region: missions_agg_region
+    inspection_controle__missions_prog: missions_prog
+    inspection_controle__missions_sanction: missions_sanction
+    inspection_controle__missions: missions
+    inspection_controle__suites: suites
+    inspection_controle__tdb_injonction_prescriptions: tdb_injonction_prescriptions
+    inspection_controle__tdb_injonction: tdb_injonction
+    inspection_controle__tdb_missions_sanction: tdb_missions_sanction
+    inspection_controle__tdb_prescription: tdb_prescription
+    inspection_controle__tdb_sanction_statut_juridique: tdb_sanction_statut_juridique
+
+InspectionControlePH:
+  local_directory_input: "input/inspection_controle_ph/"
+  local_directory_output: "output/inspection_controle_ph/"
+  models_directory: "dbtInspectionControlePH"
+  create_table_directory: "output_sql/inspection_controle_ph/"
+  remote_directory_input: "/SCN_BDD/INSPECTION_CONTROLE/PH/input"
+  remote_directory_output: "/SCN_BDD/INSPECTION_CONTROLE/PH/output"
+  files_to_download:
+    - path: "/SCN_BDD/SIICEA"
+      keyword: "DECISIONS_SCN"
+      file: "sa_siicea_decisions.csv"
+    - path: "/SCN_BDD/T_FINESS"
+      keyword: "t-finess"
+      file: "sa_t_finess.csv"
+    - path: "/SCN_BDD/SIICEA/"
+      keyword: "MISSIONSREAL"
+      file: "sa_siicea_missions_real.csv"
+  input_to_download:
+    staging__sa_t_finess: sa_t_finess
+    staging__sa_siicea_missions_real: sa_siicea_missions_real
+    staging__sa_siicea_decisions: sa_siicea_decisions
+    staging__matrice_tdb_esms: sa_tdb_esms
+    staging__matrice_ciblage: sa_ciblage
+  files_to_upload:
+    inspection_controle_PH__tdb_ic_finess_500_ph: tdb_ic_finess_500_ph
+    inspection_controle_PH__tdb_ic_siicea_decisions_ph: tdb_ic_siicea_decisions_ph
+    inspection_controle_PH__tdb_ic_siicea_mission_ph: tdb_ic_siicea_mission_ph
