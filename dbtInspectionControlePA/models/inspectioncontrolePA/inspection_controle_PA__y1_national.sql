@@ -31,11 +31,11 @@ WITH compte_ehpad AS (
 			ELSE rg.reg_cd
 		END || 
 		CASE
-			WHEN m.finess_geographique = '' THEN {{ iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}
+			WHEN m.finess_geographique = '' THEN {{ dbtStaging.iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}
 			WHEN rg.dep_lb IS NULL THEN 'NC'
 			ELSE rg.dep_cd
 		END || 
-		{{ iif_replacement("t_finess.com_code IS NULL", "'NC'", "t_finess.com_code") }}
+		{{ dbtStaging.iif_replacement("t_finess.com_code IS NULL", "'NC'", "t_finess.com_code") }}
 		as id_ref,
 		CASE
 			WHEN m.finess_geographique = '' THEN rr.reg
@@ -50,7 +50,7 @@ WITH compte_ehpad AS (
 		END
 		as reg_lb,
 		CASE
-			WHEN m.finess_geographique = '' THEN {{ iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}
+			WHEN m.finess_geographique = '' THEN {{ dbtStaging.iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}
 			WHEN rg.dep_lb IS NULL THEN 'NC'
 			ELSE rg.dep_cd
 		END
@@ -61,14 +61,14 @@ WITH compte_ehpad AS (
 			ELSE rg.dep_lb
 		END
 		as dep_lb,
-		{{ iif_replacement("t_finess.com_code IS NULL", "'NC'", "t_finess.com_code") }} as com_cd,
-		{{ iif_replacement("rg.com_cd  IS NULL", "'NC'", "rg.com_lb") }} as com_lb,
+		{{ dbtStaging.iif_replacement("t_finess.com_code IS NULL", "'NC'", "t_finess.com_code") }} as com_cd,
+		{{ dbtStaging.iif_replacement("rg.com_cd  IS NULL", "'NC'", "rg.com_lb") }} as com_lb,
 		finess_geographique
 	--FROM ODS_IC
 	FROM {{ ref('staging__sa_siicea_missions_real') }} m  
 	LEFT JOIN {{ ref('staging__tdb_ic_finess_500') }} t_finess ON m.finess_geographique = t_finess.finess
 	LEFT JOIN {{ ref('staging__ref_geo') }} rg ON t_finess.com_code = rg.com_cd 
-	LEFT JOIN {{ ref('staging__ref_departements') }} rd ON ({{ iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}) = rd.dep 
+	LEFT JOIN {{ ref('staging__ref_departements') }} rd ON ({{ dbtStaging.iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}) = rd.dep 
 	LEFT JOIN {{ ref('staging__ref_regions') }} rr ON rd.reg = rr.reg
 )
 -- table qui compte le nombre de missions
@@ -80,11 +80,11 @@ WITH compte_ehpad AS (
 			ELSE rg.reg_cd
 		END || 
 		CASE
-			WHEN m.finess_geographique = '' THEN {{ iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}
+			WHEN m.finess_geographique = '' THEN {{ dbtStaging.iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}
 			WHEN rg.dep_lb IS NULL THEN 'NC'
 			ELSE rg.dep_cd
 		END || 
-		{{ iif_replacement("t_finess.com_code IS NULL", "'NC'", "t_finess.com_code") }}
+		{{ dbtStaging.iif_replacement("t_finess.com_code IS NULL", "'NC'", "t_finess.com_code") }}
 		as id_ref,
 		CASE
 			WHEN m.finess_geographique = '' THEN rr.reg
@@ -99,7 +99,7 @@ WITH compte_ehpad AS (
 		END
 		as reg_lb,
 		CASE
-			WHEN m.finess_geographique = '' THEN {{ iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}
+			WHEN m.finess_geographique = '' THEN {{ dbtStaging.iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}
 			WHEN rg.dep_lb IS NULL THEN 'NC'
 			ELSE rg.dep_cd
 		END
@@ -110,14 +110,14 @@ WITH compte_ehpad AS (
 			ELSE rg.dep_lb
 		END
 		as dep_lb,
-		{{ iif_replacement("t_finess.com_code IS NULL", "'NC'", "t_finess.com_code") }} as com_cd,
-		{{ iif_replacement("rg.com_cd  IS NULL", "'NC'", "rg.com_lb") }} as com_lb,
+		{{ dbtStaging.iif_replacement("t_finess.com_code IS NULL", "'NC'", "t_finess.com_code") }} as com_cd,
+		{{ dbtStaging.iif_replacement("rg.com_cd  IS NULL", "'NC'", "rg.com_lb") }} as com_lb,
 	identifiant_de_la_mission
 	--FROM ODS_IC
 	FROM {{ ref('staging__sa_siicea_missions_real') }} m
 	LEFT JOIN {{ ref('staging__tdb_ic_finess_500') }} t_finess ON m.finess_geographique = t_finess.finess
 	LEFT JOIN {{ ref('staging__ref_geo') }} rg ON t_finess.com_code = rg.com_cd 
-	LEFT JOIN {{ ref('staging__ref_departements') }} rd ON ({{ iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}) = rd.dep 
+	LEFT JOIN {{ ref('staging__ref_departements') }} rd ON ({{ dbtStaging.iif_replacement("LENGTH(m.departement)=1", "'0' || m.departement", "m.departement") }}) = rd.dep 
 	LEFT JOIN {{ ref('staging__ref_regions') }} rr ON rd.reg = rr.reg
 )
 -- table qui recense toutes les combinaisons id_ref possibles

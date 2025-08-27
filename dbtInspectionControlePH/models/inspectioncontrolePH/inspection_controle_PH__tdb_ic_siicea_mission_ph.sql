@@ -2,7 +2,7 @@
 {{ config(
     materialized='view'
 ) }}
-
+{% set reference_date = '2025-07-01' %}
 
 WITH etab AS (
     SELECT
@@ -129,10 +129,10 @@ WITH etab AS (
         -- filtre sur la période
         AND (
         CAST((SUBSTR(date_reelle_visite,7,4) || SUBSTR(date_reelle_visite,4,2) || SUBSTR(date_reelle_visite,1,2)) AS INTEGER)
-        >=20240701
+        >={{ dbtStaging.get_first_date_last_rolling_years() }}
         AND
         CAST((SUBSTR(date_reelle_visite,7,4) || SUBSTR(date_reelle_visite,4,2) || SUBSTR(date_reelle_visite,1,2)) AS INTEGER)
-        <=20250630
+        <={{ dbtStaging.get_last_date_last_rolling_years() }}
         )
         AND
         date_reelle_visite != ''

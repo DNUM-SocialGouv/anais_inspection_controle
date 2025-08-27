@@ -20,7 +20,7 @@ WITH missions_real_complet AS (
         END
         as reg_lb,
         CASE
-            WHEN missions_real.finess_geographique = '' THEN {{ iif_replacement("LENGTH(missions_real.departement)=1", "'0' || missions_real.departement", "missions_real.departement") }}
+            WHEN missions_real.finess_geographique = '' THEN {{ dbtStaging.iif_replacement("LENGTH(missions_real.departement)=1", "'0' || missions_real.departement", "missions_real.departement") }}
             WHEN rg.dep_lb IS NULL THEN 'NC'
             ELSE rg.dep_cd
         END
@@ -31,16 +31,16 @@ WITH missions_real_complet AS (
             ELSE rg.dep_lb
         END
         as dep_lb,
-        {{ iif_replacement("t_finess.com_code IS NULL", "'NC'", "t_finess.com_code") }} as com_cd,
-        {{ iif_replacement("rg.COM_CD  IS NULL", "'NC'", "rg.COM_LB") }} as com_lb,
+        {{ dbtStaging.iif_replacement("t_finess.com_code IS NULL", "'NC'", "t_finess.com_code") }} as com_cd,
+        {{ dbtStaging.iif_replacement("rg.COM_CD  IS NULL", "'NC'", "rg.COM_LB") }} as com_lb,
         missions_real.finess_geographique AS finess_cd,
         missions_real.cible,
         missions_real.identifiant_de_la_mission,
         t_finess.statut_jur_niv2_code AS statut_juridique_cd,
-        {{ iif_replacement("t_finess.statut_jur_niv2_lib = ''", "'NC'", "t_finess.statut_jur_niv2_lib") }} AS statut_juridique_lb,
+        {{ dbtStaging.iif_replacement("t_finess.statut_jur_niv2_lib = ''", "'NC'", "t_finess.statut_jur_niv2_lib") }} AS statut_juridique_lb,
         CASE
             WHEN t_finess.statut_jur_niv2_code = '1100' OR t_finess.statut_jur_niv2_code = '1200' THEN 'Organisme public'
-            ELSE {{ iif_replacement("t_finess.statut_jur_niv2_lib = ''", "'NC'", "t_finess.statut_jur_niv2_lib") }}
+            ELSE {{ dbtStaging.iif_replacement("t_finess.statut_jur_niv2_lib = ''", "'NC'", "t_finess.statut_jur_niv2_lib") }}
         END AS statut_juridique_lb_corr,
         missions_real.type_de_mission,
         modalite_d_investigation AS ctrl_pl_pi,
@@ -48,7 +48,7 @@ WITH missions_real_complet AS (
         missions_real.date_reelle_visite,
         --groupe_diamant.GROUPE AS groupe_2,
         sa_cibles.groupe_cibles AS groupe_siicea,
-        {{ iif_replacement("missions_real.type_de_planification = 'Inopiné'", "'Programmé'", "missions_real.type_de_planification") }} AS type_de_planification,
+        {{ dbtStaging.iif_replacement("missions_real.type_de_planification = 'Inopiné'", "'Programmé'", "missions_real.type_de_planification") }} AS type_de_planification,
         mission_conjointe_avec_1,
         mission_conjointe_avec_2,
         CASE 
@@ -56,11 +56,11 @@ WITH missions_real_complet AS (
             WHEN mission_conjointe_avec_1 = '' OR mission_conjointe_avec_1 = 'Non' THEN 'Non conjointe'
             ELSE 'ARS + autre administration'
         END AS mission_conjointe,
-        {{ iif_replacement("missions_real.modalite_de_la_mission=''", "'NC'", "missions_real.modalite_de_la_mission") }} AS modalite_de_la_mission
+        {{ dbtStaging.iif_replacement("missions_real.modalite_de_la_mission=''", "'NC'", "missions_real.modalite_de_la_mission") }} AS modalite_de_la_mission
     FROM {{ ref('staging__sa_siicea_missions_real') }} missions_real
     LEFT JOIN {{ ref('staging__tdb_ic_finess_500') }} t_finess ON missions_real.finess_geographique = t_finess.finess
     LEFT JOIN {{ ref('staging__ref_geo') }} rg ON t_finess.com_code = rg.COM_CD 
-    LEFT JOIN {{ ref('staging__ref_departements') }} rd ON ({{ iif_replacement("LENGTH(missions_real.departement)=1", "'0' || missions_real.departement", "missions_real.departement") }}) = rd.DEP 
+    LEFT JOIN {{ ref('staging__ref_departements') }} rd ON ({{ dbtStaging.iif_replacement("LENGTH(missions_real.departement)=1", "'0' || missions_real.departement", "missions_real.departement") }}) = rd.DEP 
     LEFT JOIN {{ ref('staging__ref_regions') }} rr ON rd.reg = rr.reg
     LEFT JOIN {{ ref('staging__sa_siicea_cibles') }} sa_cibles ON missions_real.finess_geographique = sa_cibles.finess 
 )
@@ -107,7 +107,7 @@ WITH missions_real_complet AS (
             complement,
             theme_decision,
             sous_theme_decision,
-            {{ iif_replacement("type_de_decision IN (
+            {{ dbtStaging.iif_replacement("type_de_decision IN (
                 'Injonction',
                 'Prescription',
                 'Saisine'
