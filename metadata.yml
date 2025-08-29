@@ -39,6 +39,28 @@ InspectionControlePA:
     - path: "/SCN_BDD/SIICEA/"
       keyword: "MISSIONSREAL"
       file: "sa_siicea_missions_real.csv"
+  table_to_copy:
+    sa_siicea_cibles: sa_siicea_cibles
+    sa_siicea_decisions: sa_siicea_decisions
+    sa_siicea_missions_prog: sa_siicea_missions_prog
+    sa_siicea_missions_real: sa_siicea_missions_real
+    sa_t_finess: sa_t_finess
+    v_comer: v_comer
+    v_commune_comer: v_commune_comer
+    v_commune_depuis: v_commune_depuis
+    v_commune: v_commune
+    v_departement: v_departement
+    v_region: v_region
+    zsa_siicea_cibles: zsa_siicea_cibles
+    zsa_siicea_decisions: zsa_siicea_decisions
+    zsa_siicea_missions_prog: zsa_siicea_missions_prog
+    zsa_siicea_missions_real: zsa_siicea_missions_real
+    zsa_t_finess: zsa_t_finess
+    zv_comer: zv_comer
+    zv_commune_comer: zv_commune_comer
+    zv_commune_depuis: vz_commune_depuis
+    zv_commune: zv_commune
+    zv_departement: zv_departement
   input_to_download:
     sa_siicea_cibles: sa_siicea_cibles
     sa_siicea_decisions: sa_siicea_decisions
