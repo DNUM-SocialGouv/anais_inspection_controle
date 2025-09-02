@@ -122,12 +122,13 @@ InspectionControlePH:
     - path: "/SCN_BDD/SIICEA/"
       keyword: "MISSIONSREAL"
       file: "sa_siicea_missions_real.csv"
-  input_to_download:
+  table_to_copy:
     staging__sa_t_finess: sa_t_finess
     staging__sa_siicea_missions_real: sa_siicea_missions_real
     staging__sa_siicea_decisions: sa_siicea_decisions
     staging__matrice_tdb_esms: sa_tdb_esms
     staging__matrice_ciblage: sa_ciblage
+  input_to_download:
   files_to_upload:
     inspection_controle_PH__tdb_ic_finess_500_ph: tdb_ic_finess_500_ph
     inspection_controle_PH__tdb_ic_siicea_decisions_ph: tdb_ic_siicea_decisions_ph

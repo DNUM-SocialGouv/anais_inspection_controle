@@ -5,7 +5,6 @@ sources:
   - name: main
     tables:
       - name: sa_siicea_cibles
-      - name: sa_siicea_missions
       - name: sa_siicea_decisions
       - name: sa_t_finess
       - name: v_comer
@@ -22,7 +21,6 @@ sources:
   - name: public
     tables:
       - name: sa_siicea_cibles
-      - name: sa_siicea_missions
       - name: sa_siicea_decisions
       - name: sa_t_finess
       - name: v_comer
