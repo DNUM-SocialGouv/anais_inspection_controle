@@ -7,7 +7,7 @@ WITH detail AS (
     SELECT 
         theme_decision ,
         sous_theme_decision ,
-        SUM(nb_suite) AS prescriptions
+        CAST(SUM(nb_suite) AS INTEGER) AS prescriptions
     FROM {{ ref('inspection_controle_PA__suites') }}
     --WHERE filtre = 'Hors santé-environnement' 
     WHERE type_de_decision = 'Prescription'
@@ -17,7 +17,7 @@ WITH detail AS (
 )
 , total AS (
     SELECT
-        SUM(nb_suite) AS total_prescriptions
+        CAST(SUM(nb_suite) AS INTEGER) AS total_prescriptions
         FROM {{ ref('inspection_controle_PA__suites') }}
     --WHERE filtre = 'Hors santé-environnement' 
     WHERE type_de_decision = 'Prescription'
@@ -27,6 +27,6 @@ SELECT
     sous_theme_decision,
     Prescriptions AS "Nombre de prescriptions afférentes",
     total_prescriptions AS "Total Prescriptions",
-    ROUND((CAST(prescriptions AS NUMERIC) / NULLIF(CAST(total_prescriptions AS NUMERIC), 0)) * 100, 2) AS "% global"
+    CAST(ROUND((CAST(prescriptions AS NUMERIC) / NULLIF(CAST(total_prescriptions AS NUMERIC), 0)) * 100, 2) AS FLOAT) AS "% global"
 FROM detail
 LEFT JOIN total ON TRUE

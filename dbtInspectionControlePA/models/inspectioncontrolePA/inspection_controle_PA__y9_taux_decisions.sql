@@ -22,6 +22,6 @@ SELECT
 	type_de_decision,
 	"Nombre de missions d'I-C distinctes avec au moins une décision ou aucune",
 	"Total de missions d'I-C distinctes",
-	ROUND((CAST("Nombre de missions d'I-C distinctes avec au moins une décision ou aucune" AS NUMERIC) / NULLIF(CAST("Total de missions d'I-C distinctes" AS NUMERIC), 0)) * 100, 2) AS "Taux d'I-C (tout type d'I-C confondus) d'EHPAD (tout statut confondu ) réalisés avec au moins une décision édictée ou aucune"
+	CAST(ROUND((CAST("Nombre de missions d'I-C distinctes avec au moins une décision ou aucune" AS NUMERIC) / NULLIF(CAST("Total de missions d'I-C distinctes" AS NUMERIC), 0)) * 100, 2) AS FLOAT) AS "Taux d'I-C (tout type d'I-C confondus) d'EHPAD (tout statut confondu ) réalisés avec au moins une décision édictée ou aucune"
 FROM detail
 LEFT JOIN total ON TRUE

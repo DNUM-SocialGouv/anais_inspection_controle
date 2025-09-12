@@ -92,14 +92,14 @@ WITH Reference AS (
 SELECT 
 	statut_juridique_lb_corr,
 	COUNT(DISTINCT identifiant_de_la_mission) AS "Nombre total de missions d'I-C",
-	SUM(injonction) AS "Nombre total d'injonctions",
-	ROUND((CAST(SUM(injonction) AS NUMERIC) / NULLIF(CAST(COUNT(DISTINCT identifiant_de_la_mission) AS NUMERIC), 0)), 2) AS "Nombre moyen d'injonctions par mission d'I-C",
-	SUM(prescription) AS "Nombre total de prescriptions",
-	ROUND((CAST(SUM(prescription) AS NUMERIC) / NULLIF(CAST(COUNT(DISTINCT identifiant_de_la_mission) AS NUMERIC), 0)), 2) AS "Nombre moyen de ^prescriptions par mission d'I-C",
-	SUM(coercitif) AS "Nombre total de suites coercitives",
-	ROUND((CAST(SUM(coercitif) AS NUMERIC) / NULLIF(CAST(COUNT(DISTINCT identifiant_de_la_mission) AS NUMERIC), 0)), 2) AS "Nombre moyen de suites coercitives par mission d'I-C",
-	SUM(recommandation) AS "Nombre total de recommandations",
-	ROUND((CAST(SUM(recommandation) AS NUMERIC) / NULLIF(CAST(COUNT(DISTINCT identifiant_de_la_mission) AS NUMERIC), 0)), 2) AS "Nombre moyen de recommandations par mission d'I-C"
+	CAST(SUM(injonction) AS INTEGER) AS "Nombre total d'injonctions",
+	CAST(ROUND((CAST(SUM(injonction) AS NUMERIC) / NULLIF(CAST(COUNT(DISTINCT identifiant_de_la_mission) AS NUMERIC), 0)), 2) AS FLOAT) AS "Nombre moyen d'injonctions par mission d'I-C",
+	CAST(SUM(prescription) AS INTEGER) AS "Nombre total de prescriptions",
+	CAST(ROUND((CAST(SUM(prescription) AS NUMERIC) / NULLIF(CAST(COUNT(DISTINCT identifiant_de_la_mission) AS NUMERIC), 0)), 2) AS FLOAT) AS "Nombre moyen de ^prescriptions par mission d'I-C",
+	CAST(SUM(coercitif) AS INTEGER) AS "Nombre total de suites coercitives",
+	CAST(ROUND((CAST(SUM(coercitif) AS NUMERIC) / NULLIF(CAST(COUNT(DISTINCT identifiant_de_la_mission) AS NUMERIC), 0)), 2) AS FLOAT) AS "Nombre moyen de suites coercitives par mission d'I-C",
+	CAST(SUM(recommandation) AS INTEGER) AS "Nombre total de recommandations",
+	CAST(ROUND((CAST(SUM(recommandation) AS NUMERIC) / NULLIF(CAST(COUNT(DISTINCT identifiant_de_la_mission) AS NUMERIC), 0)), 2) AS FLOAT) AS "Nombre moyen de recommandations par mission d'I-C"
 FROM raw
 GROUP BY 
 	statut_juridique_lb_corr

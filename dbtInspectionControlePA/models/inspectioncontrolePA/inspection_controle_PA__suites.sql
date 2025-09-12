@@ -138,8 +138,8 @@ dwh AS (
         complement,
         theme_decision,
         sous_theme_decision,
-        COALESCE(sanction, 'sans_contrainte') AS SANCTION,
-        SUM(nombre) AS nb_suite
+        COALESCE(sanction, 'sans_contrainte') AS sanction,
+        CAST(SUM(nombre) AS INTEGER) AS nb_suite
     --Nombre
     FROM missions_real_complet
     LEFT JOIN 

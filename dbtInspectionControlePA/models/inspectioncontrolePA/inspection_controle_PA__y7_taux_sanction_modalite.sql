@@ -36,10 +36,10 @@ WITH sans_sanction_sur_place AS (
 SELECT 
 	sans_sanction_sur_place,
 	total_sur_place,
-	ROUND((CAST(sans_sanction_sur_place AS NUMERIC) / NULLIF(CAST(total_sur_place AS NUMERIC), 0)) * 100, 2) AS "Taux d'I-C sur place d'EHPAD clôturés sans suite",
+	CAST(ROUND((CAST(sans_sanction_sur_place AS NUMERIC) / NULLIF(CAST(total_sur_place AS NUMERIC), 0)) * 100, 2) AS FLOAT) AS "Taux d'I-C sur place d'EHPAD clôturés sans suite",
 	sans_sanction_sur_pieces,
 	total_sur_pieces,
-	ROUND((CAST(sans_sanction_sur_pieces AS NUMERIC) / NULLIF(CAST(total_sur_pieces AS NUMERIC), 0)) * 100, 2) AS "Taux d'I-C sur pièces d'EHPAD clôturés sans suite"
+	CAST(ROUND((CAST(sans_sanction_sur_pieces AS NUMERIC) / NULLIF(CAST(total_sur_pieces AS NUMERIC), 0)) * 100, 2) AS FLOAT) AS "Taux d'I-C sur pièces d'EHPAD clôturés sans suite"
 FROM sans_sanction_sur_place
 LEFT JOIN total_sur_place ON TRUE
 LEFT JOIN sans_sanction_sur_pieces ON TRUE

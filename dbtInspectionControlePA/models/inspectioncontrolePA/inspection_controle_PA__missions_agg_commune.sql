@@ -81,7 +81,7 @@ communes as (
         count(distinct e.finess) as nb_ehpad,
         count(distinct m.identifiant_de_la_mission) as nb_mission,
         count(distinct c.finess) as nb_etab_controle,
-        (cast(count(distinct c.finess) as float) / nullif(cast(count(distinct e.finess) as float), 0)) * 100 as nb_etab_controle_nb_ehpad
+        CAST((cast(count(distinct c.finess) as NUMERIC) / nullif(cast(count(distinct e.finess) as NUMERIC), 0)) * 100 AS FLOAT) as nb_etab_controle_nb_ehpad
     from reference r
     left join compte_ehpad e on r.id_ref = e.id_ref
     left join compte_ehpad_controles c on r.id_ref = c.id_ref

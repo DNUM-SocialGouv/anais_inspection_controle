@@ -66,7 +66,7 @@ cross_miss_sui as (
         d.sous_theme_decision,
         d.statut_de_decision,
         coalesce(d.sanction, 'sans_contrainte') as sanction,
-        sum(d.nombre) as nb_suite
+        CAST(SUM(d.nombre) AS INTEGER) as nb_suite
 
     from missions_real_complet mrc
     left join (

@@ -45,7 +45,7 @@ saisines_parq as (
 injonctions as (
     select
         reg_lb,
-        sum(nb_suite) as nb_injonc
+        CAST(sum(nb_suite) AS INTEGER) as nb_injonc
     from {{ ref('inspection_controle__suites') }}
     where type_de_decision = 'Injonction'
     group by reg_lb
@@ -54,7 +54,7 @@ injonctions as (
 prescriptions as (
     select
         reg_lb,
-        sum(nb_suite) as nb_prescr
+        CAST(sum(nb_suite) AS INTEGER) as nb_prescr
     from {{ ref('inspection_controle__suites') }}
     where type_de_decision = 'Prescription'
     group by reg_lb
@@ -63,7 +63,7 @@ prescriptions as (
 injonc_prescr as (
     select
         reg_lb,
-        sum(nb_suite) as nb_injonc_prescr
+        CAST(sum(nb_suite) AS INTEGER) as nb_injonc_prescr
     from {{ ref('inspection_controle__suites') }}
     where type_de_decision in ('Injonction', 'Prescription')
     group by reg_lb
@@ -77,17 +77,17 @@ cross_all as (
         m.nb_missions as "Nombre d'I-C d'EHPAD réalisées",
         mc.nb_missions_cloturees as "Nombre d'I-C clôturées",
         ms.nb_missions_cloturees_sans_s as "Nombre d'I-C clôturées sans suites coercitives (injonction, prescription) ni saisine",
-        (cast(ms.nb_missions_cloturees_sans_s as float) / cast(mc.nb_missions_cloturees as float)) * 100
+        CAST((cast(ms.nb_missions_cloturees_sans_s as NUMERIC) / cast(mc.nb_missions_cloturees as NUMERIC)) * 100 AS FLOAT)
             as "Taux d'I-C clôturées sans suites coercitives (injonction, prescription) ni saisine (en %)",
         sp.nb_saisines_parquet as "Nombre de signalements au Parquet effectués (art. 40 CPP)",
         i.nb_injonc as "Nbr total injonctions",
-        (cast(i.nb_injonc as float) / cast(m.nb_missions as float))
+        CAST((cast(i.nb_injonc as NUMERIC) / cast(m.nb_missions as NUMERIC)) AS FLOAT)
             as "Nbr injonctions moyen / I-C réalisé",
         p.nb_prescr as "Nbr total prescriptions",
-        (cast(p.nb_prescr as float) / cast(m.nb_missions as float))
+        CAST((cast(p.nb_prescr as NUMERIC) / cast(m.nb_missions as NUMERIC)) AS FLOAT)
             as "Nbr prescriptions moyen / I-C réalisé",
         ip.nb_injonc_prescr as "Nbr total injonctions + prescriptions",
-        (cast(ip.nb_injonc_prescr as float) / cast(m.nb_missions as float))
+        CAST((cast(ip.nb_injonc_prescr as NUMERIC) / cast(m.nb_missions as NUMERIC)) AS FLOAT)
             as "Nbr injonctions et prescriptions moyen par I-C réalisé"
     from ehpad_control e
     left join missions_real m on e.reg_lb = m.reg_lb

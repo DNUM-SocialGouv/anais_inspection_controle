@@ -7,7 +7,7 @@ WITH detail AS (
     SELECT 
         theme_decision,
         sous_theme_decision,
-        SUM(nb_suite) AS injonctions
+        CAST(SUM(nb_suite) AS INTEGER) AS injonctions
     FROM {{ ref('inspection_controle_PA__suites') }}
     --WHERE filtre = 'Hors santé-environnement' 
     WHERE type_de_decision = 'Injonction'
@@ -17,7 +17,7 @@ WITH detail AS (
 )
 , total AS (
     SELECT
-        SUM(nb_suite) AS total_injonctions
+        CAST(SUM(nb_suite) AS INTEGER) AS total_injonctions
     FROM {{ ref('inspection_controle_PA__suites') }}
     --WHERE filtre = 'Hors santé-environnement' 
     WHERE type_de_decision = 'Injonction'
@@ -27,6 +27,6 @@ SELECT
     sous_theme_decision,
     Injonctions AS "Nombre d'injonctions afférentes",
     total_injonctions AS "Total Injonctions" ,
-    ROUND((CAST(injonctions AS NUMERIC) / NULLIF(CAST(total_injonctions AS NUMERIC), 0)) * 100, 2) AS "% global"
+    CAST(ROUND((CAST(injonctions AS NUMERIC) / NULLIF(CAST(total_injonctions AS NUMERIC), 0)) * 100, 2) AS FLOAT) AS "% global"
 FROM detail
 LEFT JOIN total ON TRUE

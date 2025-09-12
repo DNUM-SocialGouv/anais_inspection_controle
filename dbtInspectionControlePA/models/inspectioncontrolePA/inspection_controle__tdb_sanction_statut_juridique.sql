@@ -27,7 +27,7 @@ injonctions as (
         coalesce(reg_lb, '') || coalesce(statut_juridique_lb, '') as id_ref,
         reg_lb,
         statut_juridique_lb,
-        sum(nb_suite) as nb_injonctions
+        CAST(sum(nb_suite) AS INTEGER) as nb_injonctions
     from {{ ref('inspection_controle__suites') }}
     where type_de_decision = 'Injonction'
     group by reg_lb, statut_juridique_lb
@@ -38,7 +38,7 @@ prescriptions as (
         coalesce(reg_lb, '') || coalesce(statut_juridique_lb, '') as id_ref,
         reg_lb,
         statut_juridique_lb,
-        sum(nb_suite) as nb_prescriptions
+        CAST(sum(nb_suite) AS INTEGER) as nb_prescriptions
     from {{ ref('inspection_controle__suites') }}
     where type_de_decision = 'Prescription'
     group by reg_lb, statut_juridique_lb
@@ -58,13 +58,13 @@ cross_all as (
         mr.nb_missions_real as "I-C d'EHPAD réalisées",
         mc.nb_missions_cloturees_sans_s as "Nombre d'I-C clôturées sans suites coercitives (injonction, prescription) ni saisine",
         i.nb_injonctions as "Total injonctions",
-        cast(i.nb_injonctions as float) / nullif(cast(mr.nb_missions_real as float), 0) as "Nombre moyen d'injonctions / I-C réalisé",
+        CAST(cast(i.nb_injonctions as NUMERIC) / nullif(cast(mr.nb_missions_real as NUMERIC), 0) AS FLOAT) as "Nombre moyen d'injonctions / I-C réalisé",
         p.nb_prescriptions as "Total prescriptions",
-        cast(p.nb_prescriptions as float) / nullif(cast(mr.nb_missions_real as float), 0) as "Nombre moyen de prescriptions / I-C réalisé",
+        CAST(cast(p.nb_prescriptions as NUMERIC) / nullif(cast(mr.nb_missions_real as NUMERIC), 0) AS FLOAT) as "Nombre moyen de prescriptions / I-C réalisé",
         i.nb_injonctions + p.nb_prescriptions as "Total injonctions et prescriptions",
-        cast(i.nb_injonctions + p.nb_prescriptions as float) / nullif(cast(mr.nb_missions_real as float), 0) as "Nombre moyen d'injonctions et de prescriptions / I-C réalisé",
-        cast(i.nb_injonctions as float) / nullif(cast(i.nb_injonctions + p.nb_prescriptions as float), 0) * 100 as "Part injonctions (en %)",
-        cast(p.nb_prescriptions as float) / nullif(cast(i.nb_injonctions + p.nb_prescriptions as float), 0) * 100 as "Part prescriptions (en %)"
+        CAST(cast(i.nb_injonctions + p.nb_prescriptions as NUMERIC) / nullif(cast(mr.nb_missions_real as NUMERIC), 0) AS FLOAT) as "Nombre moyen d'injonctions et de prescriptions / I-C réalisé",
+        CAST(cast(i.nb_injonctions as NUMERIC) / nullif(cast(i.nb_injonctions + p.nb_prescriptions as NUMERIC), 0) * 100 AS FLOAT) as "Part injonctions (en %)",
+        CAST(cast(p.nb_prescriptions as NUMERIC) / nullif(cast(i.nb_injonctions + p.nb_prescriptions as NUMERIC), 0) * 100 AS FLOAT) as "Part prescriptions (en %)"
     from reference ref
     left join missions_real mr on ref.id_ref = mr.id_ref
     left join missions_clo_ss_s mc on ref.id_ref = mc.id_ref

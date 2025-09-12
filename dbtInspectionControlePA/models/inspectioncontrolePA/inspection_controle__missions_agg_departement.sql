@@ -81,7 +81,7 @@ communes as (
         count(distinct e.finess) as nb_ehpad,
         count(distinct m.identifiant_de_la_mission) as nb_mission,
         count(distinct c.finess) as nb_etab_controle,
-        (cast(count(distinct c.finess) as float) / nullif(cast(count(distinct e.finess) as float), 0)) * 100 as nb_etab_controle_nb_ehpad
+        (cast(count(distinct c.finess) as NUMERIC) / nullif(cast(count(distinct e.finess) as NUMERIC), 0)) * 100 as nb_etab_controle_nb_ehpad
     from reference r
     left join compte_ehpad e on r.id_ref = e.id_ref
     left join compte_ehpad_controles c on r.id_ref = c.id_ref
@@ -95,10 +95,10 @@ departements as (
         reg_lb,
         dep_cd,
         dep_lb,
-        sum(nb_ehpad) as nb_ehpad,
-        sum(nb_mission) as nb_mission,
-        sum(nb_etab_controle) as nb_etab_controle,
-        (cast(sum(nb_etab_controle) as float) / nullif(cast(sum(nb_ehpad) as float), 0)) * 100 as nb_etab_controle_nb_ehpad
+        cast(sum(nb_ehpad) as INTEGER) as nb_ehpad,
+        cast(sum(nb_mission) as INTEGER) as nb_mission,
+        cast(sum(nb_etab_controle) as INTEGER) as nb_etab_controle,
+        CAST((cast(sum(nb_etab_controle) as NUMERIC) / nullif(cast(sum(nb_ehpad) as NUMERIC), 0)) * 100 AS FLOAT) as nb_etab_controle_nb_ehpad
     from communes
     group by reg_cd, reg_lb, dep_cd, dep_lb
 )

@@ -12,7 +12,7 @@ with lien_communes as (
 
 missions_real_complet as (
     select
-        coalesce(r.reg, 'NC') as reg_cr,
+        coalesce(r.reg, 'NC') as reg_cd,
         coalesce(r.libelle, 'NC') as reg_lb,
         coalesce(d.dep, 'NC') as dep_cd,
         coalesce(d.libelle, 'NC') as dep_lb,

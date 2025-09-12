@@ -18,10 +18,10 @@ WITH juridique AS (
 )
 
 SELECT
-	ROUND((SUM(public) / NULLIF(SUM(public) + SUM(organisme_prive_a_but_non_lucratif) + SUM(organisme_prive_a_caractere_commercial), 0)) * 100, 2) 
+	CAST(ROUND((SUM(public) / NULLIF(SUM(public) + SUM(organisme_prive_a_but_non_lucratif) + SUM(organisme_prive_a_caractere_commercial), 0)) * 100, 2) AS FLOAT)
 	AS "Taux de missions d'I-C des organismes publics",
-	ROUND((SUM(organisme_prive_a_but_non_lucratif) / NULLIF(SUM(public) + SUM(organisme_prive_a_but_non_lucratif) + SUM(organisme_prive_a_caractere_commercial), 0)) * 100, 2) 
+	CAST(ROUND((SUM(organisme_prive_a_but_non_lucratif) / NULLIF(SUM(public) + SUM(organisme_prive_a_but_non_lucratif) + SUM(organisme_prive_a_caractere_commercial), 0)) * 100, 2) AS FLOAT)
 	AS "Taux de missions d'I-C des organismes privés à but lucratif",
-	ROUND((SUM(organisme_prive_a_caractere_commercial) / NULLIF(SUM(public) + SUM(organisme_prive_a_but_non_lucratif) + SUM(organisme_prive_a_caractere_commercial), 0)) * 100, 2) 
+	CAST(ROUND((SUM(organisme_prive_a_caractere_commercial) / NULLIF(SUM(public) + SUM(organisme_prive_a_but_non_lucratif) + SUM(organisme_prive_a_caractere_commercial), 0)) * 100, 2) AS FLOAT) 
 	AS "Taux de missions d'I-C des organismes privés à caractère commercial"
 FROM juridique

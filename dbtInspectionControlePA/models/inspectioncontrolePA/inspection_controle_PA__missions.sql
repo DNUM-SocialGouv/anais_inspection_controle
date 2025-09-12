@@ -41,7 +41,12 @@ WITH missions_real_complet AS (
         missions_real.type_de_mission,
         modalite_d_investigation AS ctrl_pl_pi,
         missions_real.statut_de_la_mission,
-        missions_real.date_reelle_visite,
+        CAST(CASE WHEN LENGTH(date_reelle_visite) = 10
+            THEN SUBSTRING(date_reelle_visite, 7, 4) || '-'|| 
+            SUBSTRING(date_reelle_visite, 4, 2) || '-' || 
+            SUBSTRING(date_reelle_visite, 1, 2) 
+            ELSE NULL END AS DATE)
+        AS date_reelle_visite,
         sa_cibles.groupe_cibles AS groupe_siicea,
         {{ dbtStaging.iif_replacement("missions_real.type_de_planification = 'Inopiné'", "'Programmé'", "missions_real.type_de_planification") }} AS type_de_planification,
         mission_conjointe_avec_1,

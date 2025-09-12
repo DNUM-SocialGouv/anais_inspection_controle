@@ -165,7 +165,7 @@ WITH compte_ehpad AS (
 		COUNT(DISTINCT finess) AS nb_ehpad,
 		COUNT(DISTINCT identifiant_de_la_mission) AS nb_mission,
 		COUNT(DISTINCT finess_geographique) AS nb_etab_controle,
-		(CAST(COUNT(DISTINCT finess_geographique) AS FLOAT)/NULLIF(CAST(COUNT(DISTINCT finess) AS FLOAT), 0))*100 AS nb_etab_controle_nb_ehpad
+		(CAST(COUNT(DISTINCT finess_geographique) AS NUMERIC)/NULLIF(CAST(COUNT(DISTINCT finess) AS NUMERIC), 0))*100 AS nb_etab_controle_nb_ehpad
 	FROM reference 
 	LEFT JOIN compte_ehpad ON reference.id_ref = compte_ehpad.id_ref
 	LEFT JOIN compte_ehpad_controles ON reference.id_ref = compte_ehpad_controles.id_ref
@@ -189,7 +189,7 @@ WITH compte_ehpad AS (
 		SUM(nb_ehpad) AS nb_ehpad,
 		SUM(nb_mission) AS nb_mission,
 		SUM(nb_etab_controle) AS nb_etab_controle,
-		(CAST(SUM(nb_etab_controle) AS FLOAT)/NULLIF(CAST(SUM(nb_ehpad) AS FLOAT), 0))*100 AS nb_etab_controle_nb_ehpad
+		(CAST(SUM(nb_etab_controle) AS NUMERIC)/NULLIF(CAST(SUM(nb_ehpad) AS NUMERIC), 0))*100 AS nb_etab_controle_nb_ehpad
 	FROM communes
 	GROUP BY 
 		reg_cd,
@@ -205,7 +205,7 @@ WITH compte_ehpad AS (
 		SUM(nb_ehpad) AS nb_ehpad,
 		SUM(nb_mission) AS nb_mission,
 		SUM(nb_etab_controle) AS nb_etab_controle,
-		(CAST(SUM(nb_etab_controle) AS FLOAT)/NULLIF(CAST(SUM(nb_ehpad) AS FLOAT), 0))*100 AS nb_etab_controle_nb_ehpad
+		(CAST(SUM(nb_etab_controle) AS NUMERIC)/NULLIF(CAST(SUM(nb_ehpad) AS NUMERIC), 0))*100 AS nb_etab_controle_nb_ehpad
 	FROM communes
 	GROUP BY 
 		reg_cd,
@@ -213,10 +213,10 @@ WITH compte_ehpad AS (
 )
 , nat AS (
 	SELECT 
-		SUM(nb_ehpad) AS nb_ehpad,
-		SUM(nb_mission) AS nb_mission,
-		SUM(nb_etab_controle) AS nb_etab_controle,
-		(CAST(SUM(nb_etab_controle) AS FLOAT)/NULLIF(CAST(SUM(nb_ehpad) AS FLOAT), 0))*100 AS "Taux d'EHPAD différents inspectés au moins une fois"
+		CAST(SUM(nb_ehpad) AS INTEGER) AS nb_ehpad,
+		CAST(SUM(nb_mission) AS INTEGER) AS nb_mission,
+		CAST(SUM(nb_etab_controle) AS INTEGER) AS nb_etab_controle,
+		CAST((CAST(SUM(nb_etab_controle) AS NUMERIC)/NULLIF(CAST(SUM(nb_ehpad) AS NUMERIC), 0))*100 AS FLOAT) AS "Taux d'EHPAD différents inspectés au moins une fois"
 	FROM communes
 )
 

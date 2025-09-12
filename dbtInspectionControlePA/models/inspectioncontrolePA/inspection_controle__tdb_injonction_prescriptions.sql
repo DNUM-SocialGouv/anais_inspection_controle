@@ -5,7 +5,7 @@ select
     statut_juridique_lb as "Statut juridique",
     theme_decision as "Thème Décision",
     sous_theme_decision as "Sous-thème Décision",
-    sum(nb_suite) as "Injonctions + prescriptions"
+    CAST(sum(nb_suite) AS INTEGER) as "Injonctions + prescriptions"
 from {{ ref('inspection_controle__suites') }}
 where type_de_decision in ('Injonction', 'Prescription')
 group by

@@ -50,13 +50,13 @@ WITH sans_sanction_prive_non_lucratif AS (
 SELECT 
 	sans_sanction_prive_non_lucratif,
 	total_prive_non_lucratif,
-	ROUND((CAST(sans_sanction_prive_non_lucratif AS NUMERIC) / NULLIF(CAST(total_prive_non_lucratif AS NUMERIC), 0)) * 100, 2) AS "Taux d'I-C (tout type d'I-C confondus) d'EHPAD privés à but non lucratif clôturés sans suite",
+	CAST(ROUND((CAST(sans_sanction_prive_non_lucratif AS NUMERIC) / NULLIF(CAST(total_prive_non_lucratif AS NUMERIC), 0)) * 100, 2) AS FLOAT) AS "Taux d'I-C (tout type d'I-C confondus) d'EHPAD privés à but non lucratif clôturés sans suite",
 	sans_sanction_prive_commercial,
 	total_prive_commercial,
-	ROUND((CAST(sans_sanction_prive_commercial AS NUMERIC) / NULLIF(CAST(total_prive_commercial AS NUMERIC), 0)) * 100, 2) AS "Taux d'I-C (tout type d'I-C confondus) d'EHPAD privés à caractère commercial clôturés sans suite",
+	CAST(ROUND((CAST(sans_sanction_prive_commercial AS NUMERIC) / NULLIF(CAST(total_prive_commercial AS NUMERIC), 0)) * 100, 2) AS FLOAT) AS "Taux d'I-C (tout type d'I-C confondus) d'EHPAD privés à caractère commercial clôturés sans suite",
 	sans_sanction_public,
 	total_public,
-	ROUND((CAST(sans_sanction_public AS NUMERIC) / NULLIF(CAST(total_public AS NUMERIC), 0)) * 100, 2) AS "Taux d'I-C (tout type d'I-C confondus) d'EHPAD public clôturés sans suite "
+	CAST(ROUND((CAST(sans_sanction_public AS NUMERIC) / NULLIF(CAST(total_public AS NUMERIC), 0)) * 100, 2) AS FLOAT) AS "Taux d'I-C (tout type d'I-C confondus) d'EHPAD public clôturés sans suite"
 FROM sans_sanction_prive_non_lucratif
 LEFT JOIN total_prive_non_lucratif ON TRUE
 LEFT JOIN sans_sanction_prive_commercial ON TRUE

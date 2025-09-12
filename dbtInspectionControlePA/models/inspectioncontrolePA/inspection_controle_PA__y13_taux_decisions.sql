@@ -40,9 +40,9 @@ SELECT
     total.reg_lb,
     total.total,
     avec.avec,
-    ROUND((CAST(avec.avec AS NUMERIC) / NULLIF(CAST(total.total AS NUMERIC), 0)) * 100, 2) AS "Taux de missions d'I-C clôturées avec suite",
+    CAST(ROUND((CAST(avec.avec AS NUMERIC) / NULLIF(CAST(total.total AS NUMERIC), 0)) * 100, 2) AS FLOAT) AS "Taux de missions d'I-C clôturées avec suite",
     sans.sans,
-    ROUND((CAST(sans.sans AS NUMERIC) / NULLIF(CAST(total.total AS NUMERIC), 0)) * 100, 2) AS "Taux de missions d'I-C clôturées sans suite"
+    CAST(ROUND((CAST(sans.sans AS NUMERIC) / NULLIF(CAST(total.total AS NUMERIC), 0)) * 100, 2) AS FLOAT) AS "Taux de missions d'I-C clôturées sans suite"
 FROM total 
 LEFT JOIN avec ON total.reg_cd = avec.reg_cd
 left join sans ON total.reg_cd = sans.reg_cd
