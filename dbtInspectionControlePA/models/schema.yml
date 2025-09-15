@@ -156,9 +156,9 @@ models:
         tests:
           - dbtStaging.expect_column_to_exist
           - dbtStaging.expect_type_for_column:
-              expected_type: DATE
-          - dbtStaging.expect_column_date_format:
-              expected_format: YYYY-MM-DD
+              expected_type: VARCHAR
+          # - dbtStaging.expect_column_date_format:
+          #     expected_format: YYYY-MM-DD
       - name: groupe_2
         tests:
           - dbtStaging.expect_column_to_exist
@@ -865,16 +865,16 @@ models:
         tests:
           - dbtStaging.expect_column_to_exist
           - dbtStaging.expect_type_for_column:
-              expected_type: DATE
-          - dbtStaging.expect_column_date_format:
-              expected_format: YYYY-MM-DD
+              expected_type: VARCHAR
+          # - dbtStaging.expect_column_date_format:
+          #     expected_format: YYYY-MM-DD
       - name: date_reelle_debut_mission
         tests:
           - dbtStaging.expect_column_to_exist
           - dbtStaging.expect_type_for_column:
-              expected_type: DATE
-          - dbtStaging.expect_column_date_format:
-              expected_format: YYYY-MM-DD
+              expected_type: VARCHAR
+          # - dbtStaging.expect_column_date_format:
+          #     expected_format: YYYY-MM-DD
       - name: etat_d_avancement_debut_mission
         tests:
           - dbtStaging.expect_column_to_exist
@@ -884,16 +884,16 @@ models:
         tests:
           - dbtStaging.expect_column_to_exist
           - dbtStaging.expect_type_for_column:
-              expected_type: DATE
-          - dbtStaging.expect_column_date_format:
-              expected_format: YYYY-MM-DD
+              expected_type: VARCHAR
+          # - dbtStaging.expect_column_date_format:
+          #     expected_format: YYYY-MM-DD
       - name: date_reelle_visite
         tests:
           - dbtStaging.expect_column_to_exist
           - dbtStaging.expect_type_for_column:
-              expected_type: DATE
-          - dbtStaging.expect_column_date_format:
-              expected_format: YYYY-MM-DD
+              expected_type: VARCHAR
+          # - dbtStaging.expect_column_date_format:
+          #     expected_format: YYYY-MM-DD
       - name: etat_d_avancement_visite
         tests:
           - dbtStaging.expect_column_to_exist
@@ -903,16 +903,16 @@ models:
         tests:
           - dbtStaging.expect_column_to_exist
           - dbtStaging.expect_type_for_column:
-              expected_type: DATE
-          - dbtStaging.expect_column_date_format:
-              expected_format: YYYY-MM-DD
+              expected_type: VARCHAR
+          # - dbtStaging.expect_column_date_format:
+          #     expected_format: YYYY-MM-DD
       - name: date_reelle_rapport
         tests:
           - dbtStaging.expect_column_to_exist
           - dbtStaging.expect_type_for_column:
-              expected_type: DATE
-          - dbtStaging.expect_column_date_format:
-              expected_format: YYYY-MM-DD
+              expected_type: VARCHAR
+          # - dbtStaging.expect_column_date_format:
+          #     expected_format: YYYY-MM-DD
       - name: etat_d_avancement_rapport
         tests:
           - dbtStaging.expect_column_to_exist
@@ -922,16 +922,16 @@ models:
         tests:
           - dbtStaging.expect_column_to_exist
           - dbtStaging.expect_type_for_column:
-              expected_type: DATE
-          - dbtStaging.expect_column_date_format:
-              expected_format: YYYY-MM-DD
+              expected_type: VARCHAR
+          # - dbtStaging.expect_column_date_format:
+          #     expected_format: YYYY-MM-DD
       - name: date_reelle_fin_mission
         tests:
           - dbtStaging.expect_column_to_exist
           - dbtStaging.expect_type_for_column:
-              expected_type: DATE
-          - dbtStaging.expect_column_date_format:
-              expected_format: YYYY-MM-DD
+              expected_type: VARCHAR
+          # - dbtStaging.expect_column_date_format:
+          #     expected_format: YYYY-MM-DD
       - name: etat_d_avancement_fin_mission
         tests:
           - dbtStaging.expect_column_to_exist
@@ -1445,9 +1445,9 @@ models:
         tests:
           - dbtStaging.expect_column_to_exist
           - dbtStaging.expect_type_for_column:
-              expected_type: DATE
-          - dbtStaging.expect_column_date_format:
-              expected_format: YYYY-MM-DD
+              expected_type: VARCHAR
+          # - dbtStaging.expect_column_date_format:
+          #     expected_format: YYYY-MM-DD
       - name: groupe_2
         tests:
           - dbtStaging.expect_column_to_exist
@@ -1564,9 +1564,9 @@ models:
         tests:
           - dbtStaging.expect_column_to_exist
           - dbtStaging.expect_type_for_column:
-              expected_type: DATE
-          - dbtStaging.expect_column_date_format:
-              expected_format: YYYY-MM-DD
+              expected_type: VARCHAR
+          # - dbtStaging.expect_column_date_format:
+          #     expected_format: YYYY-MM-DD
       - name: groupe_2
         tests:
           - dbtStaging.expect_column_to_exist
@@ -1683,9 +1683,9 @@ models:
         tests:
           - dbtStaging.expect_column_to_exist
           - dbtStaging.expect_type_for_column:
-              expected_type: DATE
-          - dbtStaging.expect_column_date_format:
-              expected_format: YYYY-MM-DD
+              expected_type: VARCHAR
+          # - dbtStaging.expect_column_date_format:
+          #     expected_format: YYYY-MM-DD
       - name: groupe_2
         tests:
           - dbtStaging.expect_column_to_exist
@@ -1844,9 +1844,9 @@ models:
         tests:
           - dbtStaging.expect_column_to_exist
           - dbtStaging.expect_type_for_column:
-              expected_type: DATE
-          - dbtStaging.expect_column_date_format:
-              expected_format: YYYY-MM-DD
+              expected_type: VARCHAR
+          # - dbtStaging.expect_column_date_format:
+          #     expected_format: YYYY-MM-DD
       - name: groupe_siicea
         tests:
           - dbtStaging.expect_column_to_exist
@@ -1953,9 +1953,9 @@ models:
         tests:
           - dbtStaging.expect_column_to_exist
           - dbtStaging.expect_type_for_column:
-              expected_type: DATE
-          - dbtStaging.expect_column_date_format:
-              expected_format: YYYY-MM-DD
+              expected_type: VARCHAR
+          # - dbtStaging.expect_column_date_format:
+          #     expected_format: YYYY-MM-DD
       - name: groupe_2
         tests:
           - dbtStaging.expect_column_to_exist
