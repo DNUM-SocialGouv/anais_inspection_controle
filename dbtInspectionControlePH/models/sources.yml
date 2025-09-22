@@ -1,0 +1,21 @@
+version: 2
+
+# Sources pour DuckDB
+sources:
+  - name: main
+    tables:
+      - name: sa_siicea_decisions
+      - name: sa_t_finess
+      - name: sa_siicea_missions_real
+      - name: sa_ciblage
+      - name: sa_tdb_esms
+
+
+# Sources pour PostgreSQL
+  - name: public
+    tables:
+      - name: sa_siicea_decisions
+      - name: sa_t_finess
+      - name: sa_siicea_missions_real
+      - name: sa_ciblage
+      - name: sa_tdb_esms

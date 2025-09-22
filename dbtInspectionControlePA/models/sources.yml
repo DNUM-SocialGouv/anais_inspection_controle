@@ -1,0 +1,33 @@
+version: 2
+
+# Sources pour DuckDB
+sources:
+  - name: main
+    tables:
+      - name: sa_siicea_cibles
+      - name: sa_siicea_decisions
+      - name: sa_t_finess
+      - name: v_comer
+      - name: v_commune
+      - name: v_commune_comer
+      - name: v_commune_depuis
+      - name: v_departement
+      - name: v_region
+      - name: sa_siicea_missions_real
+      - name: sa_siicea_missions_prog
+
+
+# Sources pour PostgreSQL
+  - name: public
+    tables:
+      - name: sa_siicea_cibles
+      - name: sa_siicea_decisions
+      - name: sa_t_finess
+      - name: v_comer
+      - name: v_commune
+      - name: v_commune_comer
+      - name: v_commune_depuis
+      - name: v_departement
+      - name: v_region
+      - name: sa_siicea_missions_real
+      - name: sa_siicea_missions_prog

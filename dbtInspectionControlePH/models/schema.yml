@@ -1,0 +1,269 @@
+version: 2
+
+models:
+  - name: inspection_controle_PH__tdb_ic_finess_500_ph
+    columns:
+      - name: finess
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: rs
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: com_code
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: statut_jur_niv2_code
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: statut_jur_niv2_lib
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: etat
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+  - name: inspection_controle_PH__tdb_ic_siicea_decisions_ph
+    columns:
+      - name: mission_id
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: decision_type
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: decision_complement
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: decision_theme
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: decision_sous_theme
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: ecart_constate
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: conformite
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: nombre
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: INTEGER
+      - name: decision_statut
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+  - name: inspection_controle_PH__tdb_ic_siicea_mission_ph
+    columns:
+      - name: mission_id
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: finess_cd
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: igas_cd
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: igas_lb
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: investigation
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: planification
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: modalite
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: conjointe_1
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: conjointe_2
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: groupe
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: visite_reelle_dt
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: DATE
+      - name: statut
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: et_raison_sociale
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: ej_finess_cd
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: ej_raison_sociale
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: categ_cd
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: categ_lb
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: statut_juridique_cd
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: statut_juridique_lb
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: deficiences_auditives_pr_tx
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: deficiences_auditives_sd_tx
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: deficiences_intellectuelles_pr_tx
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: deficiences_intellectuelles_sd_tx
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: deficiences_metaboliques_viscerales_et_nutritionnelles_pr_tx
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: deficiences_metaboliques_viscerales_et_nutritionnelles_sd_tx
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: deficiences_motrices_pr_tx
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: deficiences_motrices_sd_tx
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: deficiences_visuelles_pr_tx
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: deficiences_visuelles_sd_tx
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: autres_types_de_deficiences_pr_tx
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: autres_types_de_deficiences_sd_tx
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: internat_places_nb
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: tma_places_nb
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: externat_places_nb
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: mo_places_nb
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: autres_places_nb
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR
+      - name: public
+        tests:
+          - dbtStaging.expect_column_to_exist
+          - dbtStaging.expect_type_for_column:
+              expected_type: VARCHAR

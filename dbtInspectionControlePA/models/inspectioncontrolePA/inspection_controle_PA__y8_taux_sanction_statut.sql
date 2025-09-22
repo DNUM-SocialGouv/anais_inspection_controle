@@ -1,0 +1,65 @@
+{{ config(
+    materialized='view'
+) }}
+
+WITH sans_sanction_prive_non_lucratif AS (
+	SELECT
+		COUNT(DISTINCT identifiant_de_la_mission) AS sans_sanction_prive_non_lucratif
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
+	WHERE 
+		sanction = 'sans sanction'
+		AND statut_juridique_lb_corr = 'Organisme Privé à But non Lucratif'
+)
+, total_prive_non_lucratif AS (
+	SELECT
+		COUNT(DISTINCT identifiant_de_la_mission) AS total_prive_non_lucratif
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
+	WHERE 
+		statut_juridique_lb_corr = 'Organisme Privé à But non Lucratif'
+)
+, sans_sanction_prive_commercial AS (
+	SELECT
+		COUNT(DISTINCT identifiant_de_la_mission) AS sans_sanction_prive_commercial
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
+	WHERE 
+		sanction = 'sans sanction'
+		AND statut_juridique_lb_corr = 'Organisme Privé à Caractère Commercial'
+)
+, total_prive_commercial AS (
+	SELECT
+		COUNT(DISTINCT identifiant_de_la_mission) AS total_prive_commercial
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
+	WHERE 
+		statut_juridique_lb_corr = 'Organisme Privé à Caractère Commercial'
+)
+, sans_sanction_public AS (
+	SELECT
+		COUNT(DISTINCT identifiant_de_la_mission) AS sans_sanction_public
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
+	WHERE 
+		sanction = 'sans sanction'
+		AND statut_juridique_lb_corr = 'Organisme public'
+)
+, total_public AS (
+	SELECT
+		COUNT(DISTINCT identifiant_de_la_mission) AS total_public
+	FROM {{ ref('inspection_controle_PA__missions_sanction') }}
+	WHERE 
+		statut_juridique_lb_corr = 'Organisme public'
+)
+SELECT 
+	sans_sanction_prive_non_lucratif,
+	total_prive_non_lucratif,
+	CAST(ROUND((CAST(sans_sanction_prive_non_lucratif AS NUMERIC) / NULLIF(CAST(total_prive_non_lucratif AS NUMERIC), 0)) * 100, 2) AS FLOAT) AS "Taux d'I-C (tout type d'I-C confondus) d'EHPAD privés à but non lucratif clôturés sans suite",
+	sans_sanction_prive_commercial,
+	total_prive_commercial,
+	CAST(ROUND((CAST(sans_sanction_prive_commercial AS NUMERIC) / NULLIF(CAST(total_prive_commercial AS NUMERIC), 0)) * 100, 2) AS FLOAT) AS "Taux d'I-C (tout type d'I-C confondus) d'EHPAD privés à caractère commercial clôturés sans suite",
+	sans_sanction_public,
+	total_public,
+	CAST(ROUND((CAST(sans_sanction_public AS NUMERIC) / NULLIF(CAST(total_public AS NUMERIC), 0)) * 100, 2) AS FLOAT) AS "Taux d'I-C (tout type d'I-C confondus) d'EHPAD public clôturés sans suite"
+FROM sans_sanction_prive_non_lucratif
+LEFT JOIN total_prive_non_lucratif ON TRUE
+LEFT JOIN sans_sanction_prive_commercial ON TRUE
+LEFT JOIN total_prive_commercial ON TRUE
+LEFT JOIN sans_sanction_public ON TRUE
+LEFT JOIN total_public ON TRUE
