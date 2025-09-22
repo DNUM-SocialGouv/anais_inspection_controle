@@ -136,7 +136,7 @@ models:
         tests:
           - dbtStaging.expect_column_to_exist
           - dbtStaging.expect_type_for_column:
-              expected_type: DATE
+              expected_type: VARCHAR
       - name: statut
         tests:
           - dbtStaging.expect_column_to_exist
