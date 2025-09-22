@@ -244,8 +244,7 @@ La 1ère méthode est préférable, car plus rapide à exécuter et évite des p
 ---
 ## 3. Lancement du pipeline :
 
-L'ensemble de la Pipeline est exécutée depuis le `main.py`.
-La Pipeline exécutée est celle du package `anais_pipeline` dans la branche du même nom du repo anais_staging. Elle est importée comme un package dans le `pyproject.toml`.
+La Pipeline exécutée est celle du package `anais_pipeline` dans la branche du même nom du repo anais_staging. Elle est importée comme un package dans le `pyproject.toml`. L'ensemble de la Pipeline est exécutée depuis le `main.py`
 
 ### 3.1 Exécution de la pipeline pour InspectionControle:
 
@@ -254,7 +253,7 @@ La Pipeline exécutée est celle du package `anais_pipeline` dans la branche du 
 cd anais_inspection_controle
 
 #  Lancer le `main.py`
-uv run main.py --env "local" --profile "InspectionControlePA"
+uv run -m pipeline.main --env "local" --profile "InspectionControlePA"
 ```
 Avec env = 'local' ou 'anais' selon votre environnement de travail
 et profile = 'InspectionControlePA' ou 'InspectionControlePH
@@ -417,7 +416,6 @@ En cours
 │       └── sa_t_finess.sql
 ├── poetry.lock
 ├── profiles.yml
-├── main.py
 ├── metadata.yml
 ├── pyproject.toml
 ├── README.md
@@ -430,7 +428,6 @@ Répertoire d'orchestration de la pipeline Python.
 
 - `.env `: Fichier secret contenant le paramétrage vers le SFTP et les mots de passe des bases de données postgres.
 - `metadata.yml` : Contient les configurations du projets et la liste des fichiers .csv provenant du SFTP.
-- `main.py` : Programme d'exécution de la pipeline.
 - `output_sql/` : Répertoire qui contient les fichiers .sql de création de table (CREATE TABLE).
 - `logs/` : Répertoire des logs local et anais.
 - `data/` : Répertoire des bases de données DuckDB.
